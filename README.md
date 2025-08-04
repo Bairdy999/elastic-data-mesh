@@ -2,7 +2,7 @@
 
 
 
-## Prerequisites
+## Prerequisites - VM
 > [!NOTE]
 > Ubuntu 24.04 LTS is used to run Docker and the Elasticsearch data mesh clusters but feel free to use a Linux flavour of your choice that supports Docker
 
@@ -12,3 +12,10 @@ Create a VM with the following specs:
 - Memory: 8GB min, max as required
 - Primary volume: 60GB (or as required)
 - Second volume: 200GB min, max as required
+
+## Prerequisites - required software
+Install British English dictionary words for password generation:
+```
+sudo apt-get install wbritish
+```
+

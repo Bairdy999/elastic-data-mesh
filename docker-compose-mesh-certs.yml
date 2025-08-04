@@ -1,0 +1,52 @@
+networks:
+ default:
+   name: data-mesh-network
+   external: true
+
+services:
+ certs${instance}:
+   image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+   container_name: cluster${instance}-certs
+   volumes:
+     - /mnt/data/mesh/cluster${instance}/certs:/usr/share/elasticsearch/config/certs
+   user: "0"
+   command: >
+     bash -c '
+       if [ ! -f config/certs/ca.zip ]; then
+         echo "Creating CA";
+         bin/elasticsearch-certutil ca --ca-dn "CN=Elastic CA - Mesh Cluster ${instance}" --silent --pem -out config/certs/ca.zip;
+         unzip config/certs/ca.zip -d config/certs;
+       fi;
+       if [ ! -f config/certs/certs.zip ]; then
+         echo "Creating certs";
+         echo -ne \
+         "instances:\n"\
+         "  - name: cluster${instance}-elastic\n"\
+         "    dns:\n"\
+         "      - cluster${instance}-elastic\n"\
+         "      - localhost\n"\
+         "    ip:\n"\
+         "      - 127.0.0.1\n"\
+         "  - name: cluster${instance}-kibana\n"\
+         "    dns:\n"\
+         "      - cluster${instance}-kibana\n"\
+         "      - localhost\n"\
+         "    ip:\n"\
+         "      - 127.0.0.1\n"\
+         > config/certs/instances.yml;
+         bin/elasticsearch-certutil cert --silent --pem -out config/certs/certs.zip --in config/certs/instances.yml --ca-cert config/certs/ca/ca.crt --ca-key config/certs/ca/ca.key;
+         unzip config/certs/certs.zip -d config/certs;
+       fi;
+       cp config/certs/ca/ca.crt config/certs/ca/remote-cluster${instance}-ca.crt;
+       echo "Setting file permissions"
+       chown -R root:root config/certs;
+       find . -type d -exec chmod 750 \{\} \;;
+       find . -type f -exec chmod 640 \{\} \;;
+       echo "All done!";
+       exit 0;
+     '
+   healthcheck:
+     test: ["CMD-SHELL", "[ -f config/certs/cluster${instance}-elastic/cluster${instance}-elastic.crt ]"]
+     interval: 1s
+     timeout: 5s
+     retries: 20

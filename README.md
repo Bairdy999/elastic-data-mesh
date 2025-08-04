@@ -1,6 +1,5 @@
 # Elastic Data Mesh
 
-<img width="1604" height="900" alt="image" src="https://github.com/user-attachments/assets/35561d67-0c5d-4a95-ad08-924418c2a7f7" />
 
 
 ## Prerequisites

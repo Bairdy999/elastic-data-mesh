@@ -1,4 +1,4 @@
-# Elastic Data Mesh
+# Elastic Data Mesh - Proof-of-Concept Installer
 
 
 

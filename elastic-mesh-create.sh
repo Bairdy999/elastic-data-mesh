@@ -30,7 +30,8 @@ export KIBANA_PASSWORD=$randomPassword
 export ENCRYPTION_KEY=$encryptionKey
 export STACK_VERSION=8.18.1
 export CLUSTER_COUNT=$1
-export KB_MEM_LIMIT=535298048
+export KB_MEM_LIMIT="2g"
+export ELASTIC_MEM_LIMIT="2g"
 
 # Create our elastic system user for mount permissions (it will harmlessly exit if the user already exists):
 adduser elastic --system --no-create-home

@@ -78,6 +78,7 @@ services:
      memlock:
        soft: -1
        hard: -1
+   mem_limit: ${ELASTIC_MEM_LIMIT}
    healthcheck:
      test:
        [

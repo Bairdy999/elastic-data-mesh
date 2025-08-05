@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Elastic Data Mesh
 
 ## Prerequisites
@@ -39,4 +38,3 @@ sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/
 sudo apt update
 sudo apt install docker-ce -y
 ```
->>>>>>> 18275449667113a4184289c8018e51b3f4770de2

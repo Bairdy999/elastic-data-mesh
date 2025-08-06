@@ -5,12 +5,28 @@ if [[ $# -eq 0 ]] ; then
     echo 'Usage: ./elastic-mesh-create.sh x (where x is the number of clusters to create via Docker Compose)'
     exit 0
 fi
-# First create our base directory if it doesn't exist (this assumes the data volume is mounted at /mnt/data):
+
+# Get our OS, i.e. Linux or MacOS
+osType=$(uname -s)
+if [[ "$osType" == "Darwin" ]]; then
+	echo "Installation on MacOS is not supported at this time"
+	exit 0
+fi;
+
+# First create our base directory if it doesn't exist (this assumes the data volume is mounted at /mnt/data if Linux, /opt/dat if Mac):
 baseDir="/mnt/data/mesh"
+
+if [[ "$osType" == "Darwin" ]]; then
+	baseDir="/opt/data/mesh"
+fi;
+
 mkdir -p $baseDir
 
-# Then generate a password for the elastic and kibana_system users:
-randomPassword=$(WORDS=3; LC_ALL=C grep -x '[a-z]*' /usr/share/dict/words | shuf --random-source=/dev/urandom -n ${WORDS} | paste -sd "-")
+# Then generate a password for the elastic and kibana_system users (only works on Linux, change on MacOS):
+randomPassword="changeme999"
+if [[ "$osType" != "Darwin" ]]; then
+	randomPassword=$(WORDS=3; LC_ALL=C grep -x '[a-z]*' /usr/share/dict/words | shuf --random-source=/dev/urandom -n ${WORDS} | paste -sd "-")
+fi;
 
 # And also the Kibana encryption key
 encryptionKey=$(hexdump -vn32 -e'8/4 "%08X" 1 "\n"' /dev/urandom)

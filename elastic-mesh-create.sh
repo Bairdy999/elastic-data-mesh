@@ -88,8 +88,8 @@ for ((x=1; x<="$1"; x++)); do
 	echo "Generating CA and remote certs for cluster$instance"
 	printf -v instance "%02d" $x;
 # Run docker compose for each cluster to create the certs, but without -d so we can wait for the container to finish before continuing:
-	export instance=$instance && envsubst < /opt/data-mesh/docker-compose-mesh-certs.yml | docker compose -p mesh-cluster-certs$instance -f - up
-	export instance=$instance && envsubst < /opt/data-mesh/docker-compose-mesh-certs.yml | docker compose -p mesh-cluster-certs$instance -f - down
+	export instance=$instance && envsubst < /opt/elastic-data-mesh/docker-compose-mesh-certs.yml | docker compose -p mesh-cluster-certs$instance -f - up
+	export instance=$instance && envsubst < /opt/elastic-data-mesh/docker-compose-mesh-certs.yml | docker compose -p mesh-cluster-certs$instance -f - down
 # And make the elastic user owner of the mesh folders/files:
 	declare clusterBaseDir="$baseDir/cluster$instance"
 	echo "Setting elastic user permissions on $clusterBaseDir"
@@ -164,7 +164,7 @@ for ((x=1; x<="$1"; x++)); do
 	chown -Rf elastic $clusterBaseDir
 
 # Finally, run envsubst to substitute the instance Id in the docker compose template file and pipe the result via stdin to docker compose:
-	export instance=$instance && envsubst < /opt/data-mesh/docker-compose-mesh-node.yml | docker compose -p mesh-cluster$instance -f - up -d
+	export instance=$instance && envsubst < /opt/elastic-data-mesh/docker-compose-mesh-node.yml | docker compose -p mesh-cluster$instance -f - up -d
 
 #Grab the IP addresses for the containers and add to /etc/hosts:
 	declare elasticIP=$(docker exec cluster$instance-elastic hostname -I)

@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "A VPC environment in one availability zones with a NAT instance.",
+  "Description": "A VPC environment in one availability zones with a NAT instance, for an Elastic Data Mesh PoC",
   "Parameters": {
     "envPrefix": {
       "Description": "Environment name prefix.",
@@ -97,6 +97,26 @@
           {
             "Key": "Name",
             "Value": {"Fn::Join" : ["-", [{"Ref" : "envPrefix"}, "Subnet-Public-1"]]}
+          },
+          {
+            "Key": "division",
+            "Value": "field"
+          },
+          {
+            "Key": "org",
+            "Value": "sa"
+          },
+          {
+            "Key": "keep-until",
+            "Value": "2026-08-06"
+          },
+          {
+            "Key": "team",
+            "Value": "emea-uki"
+          },
+          {
+            "Key": "project",
+            "Value": "garrybaird"
           }
         ]
       }

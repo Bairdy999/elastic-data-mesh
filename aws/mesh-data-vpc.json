@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "A VPC environment in two availability zones with an NAT instance.",
+  "Description": "A VPC environment in one availability zones with a NAT instance.",
   "Parameters": {
     "envPrefix": {
       "Description": "Environment name prefix.",
@@ -10,44 +10,26 @@
     "vpcCidr": {
       "Description": "VPC CIDR block.",
       "Type": "String",
-      "Default": "10.4.0.0/16",
+      "Default": "10.0.0.0/16",
       "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
     "publicSubnet1Cidr": {
       "Description": "Public subnet 1 CIDR block.",
       "Type": "String",
-      "Default": "10.4.0.0/24",
+      "Default": "10.1.0.0/24",
       "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x and subnet of VPC."
     },
     "privateSubnet1Cidr": {
       "Description": "Private subnet 1 CIDR block.",
       "Type": "String",
-      "Default": "10.4.1.0/24",
-      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
-      "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x and subnet of VPC."
-    },
-    "publicSubnet2Cidr": {
-      "Description": "Public subnet 2 CIDR block.",
-      "Type": "String",
-      "Default": "10.4.10.0/24",
-      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
-      "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x and subnet of VPC."
-    },
-    "privateSubnet2Cidr": {
-      "Description": "Private subnet 2 CIDR block.",
-      "Type": "String",
-      "Default": "10.4.11.0/24",
+      "Default": "10.2.0.0/24",
       "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x and subnet of VPC."
     },
     "subnet1AZ": {
       "Description": "Subnet 1 availability zone.",
-      "Type": "AWS::EC2::AvailabilityZone::Name"
-    },
-    "subnet2AZ": {
-      "Description": "Subnet 2 availability zone.",
       "Type": "AWS::EC2::AvailabilityZone::Name"
     },
     "natInstanceType": {
@@ -134,36 +116,6 @@
         ]
       }
     },
-    "publicSubnet2": {
-      "Type": "AWS::EC2::Subnet",
-      "DependsOn": ["vpc", "attachGateway"],
-      "Properties": {
-        "CidrBlock": {"Ref": "publicSubnet2Cidr"},
-        "AvailabilityZone": {"Ref" : "subnet2AZ"},
-        "VpcId": {"Ref": "vpc"},
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": {"Fn::Join" : ["-", [{"Ref" : "envPrefix"}, "Subnet-Public-2"]]}
-          }
-        ]
-      }
-    },
-    "privateSubnet2": {
-      "Type": "AWS::EC2::Subnet",
-      "DependsOn": ["vpc", "attachGateway"],
-      "Properties": {
-        "CidrBlock": {"Ref": "privateSubnet2Cidr"},
-        "AvailabilityZone": {"Ref" : "subnet2AZ"},
-        "VpcId": {"Ref": "vpc"},
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": {"Fn::Join" : ["-", [{"Ref" : "envPrefix"}, "Subnet-Private-2"]]}
-          }
-        ]
-      }
-    },
     "inetGateway": {
       "Type": "AWS::EC2::InternetGateway",
       "DependsOn": ["vpc"],
@@ -215,14 +167,6 @@
         "SubnetId": {"Ref": "publicSubnet1"}
       }
     },
-    "subnetRouteTableAssociationPublic2": {
-      "Type": "AWS::EC2::SubnetRouteTableAssociation",
-      "DependsOn": ["rtbPublic", "publicSubnet2"],
-      "Properties": {
-        "RouteTableId": {"Ref": "rtbPublic"},
-        "SubnetId": {"Ref": "publicSubnet2"}
-      }
-    },
     "rtbPrivate": {
       "Type": "AWS::EC2::RouteTable",
       "DependsOn": ["vpc"],
@@ -242,14 +186,6 @@
       "Properties": {
         "RouteTableId": {"Ref": "rtbPrivate"},
         "SubnetId": {"Ref": "privateSubnet1"}
-      }
-    },
-    "subnetRouteTableAssociationPrivate2": {
-      "Type": "AWS::EC2::SubnetRouteTableAssociation",
-      "DependsOn": ["rtbPublic", "privateSubnet2"],
-      "Properties": {
-        "RouteTableId": {"Ref": "rtbPrivate"},
-        "SubnetId": {"Ref": "privateSubnet2"}
       }
     },
     "natEc2Instance": {
@@ -301,12 +237,6 @@
             "FromPort": "0",
             "ToPort": "1024",
             "CidrIp": {"Ref": "privateSubnet1Cidr"}
-          },
-          {
-            "IpProtocol": "tcp",
-            "FromPort": "0",
-            "ToPort": "1024",
-            "CidrIp": {"Ref": "privateSubnet2Cidr"}
           },
           {
             "IpProtocol": "udp",

@@ -166,7 +166,11 @@ for ((x=1; x<="$1"; x++)); do
 # Finally, run envsubst to substitute the instance Id in the docker compose template file and pipe the result via stdin to docker compose:
 	export instance=$instance && envsubst < /opt/elastic-data-mesh/docker-compose-mesh-node.yml | docker compose -p mesh-cluster$instance -f - up -d
 
-#Grab the IP addresses for the containers and add to /etc/hosts:
+# Now clear out any old entries in /etc/hosts:
+cp /etc/hosts /etc/hosts.bak
+sed -i '/cluster..-/d' /etc/hosts
+
+# And grab the latest IP addresses for the containers and add to /etc/hosts:
 	declare elasticIP=$(docker exec cluster$instance-elastic hostname -I)
 	declare kibanaIP=$(docker exec cluster$instance-kibana hostname -I)
 	printf "\n$elasticIP cluster$instance-elastic\n" >> "/etc/hosts"

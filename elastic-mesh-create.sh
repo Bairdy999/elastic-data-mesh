@@ -117,7 +117,6 @@ for ((x=1; x<="$1"; x++)); do
 done;
 
 chown -Rf elastic $baseDir
-
 #exit 0
 
 # Now clear out any old entries in /etc/hosts:

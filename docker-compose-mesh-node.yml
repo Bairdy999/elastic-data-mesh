@@ -39,7 +39,7 @@ services:
    container_name: cluster${instance}-elastic
    labels:
      co.elastic.logs/module: elasticsearch
-   user: "110"
+   user: "111"
    volumes:
      - /mnt/data/mesh/cluster${instance}/certs:/usr/share/elasticsearch/config/certs
      - /mnt/data/mesh/cluster${instance}/elastic:/usr/share/elasticsearch/data
@@ -101,7 +101,7 @@ services:
      - /mnt/data/mesh/cluster${instance}/certs:/usr/share/kibana/config/certs
      - /mnt/data/mesh/cluster${instance}/kibana:/usr/share/kibana/data
      - /mnt/data/mesh/cluster${instance}/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
-   user: "110"
+   user: "111"
    ports:
      - 56${instance}:5601
    environment:

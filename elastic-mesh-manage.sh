@@ -24,4 +24,4 @@ export KB_MEM_LIMIT="2g"
 export ELASTIC_MEM_LIMIT="2g"
 
 # Run envsubst to substitute the instance Id in the docker compose template file and pipe the result via stdin to docker compose with the relevant command:
-export instance=$instance && envsubst < /opt/data-mesh/docker-compose-mesh-node.yml | docker compose -p mesh-cluster$instance -f - $cmd
+export instance=$instance && envsubst < /opt/elastic-data-mesh/docker-compose-mesh-node.yml | docker compose -p mesh-cluster$instance -f - $cmd

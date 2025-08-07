@@ -47,7 +47,7 @@ export ENCRYPTION_KEY=$encryptionKey
 export STACK_VERSION=8.18.1
 export CLUSTER_COUNT=$1
 export KB_MEM_LIMIT="2g"
-export ELASTIC_MEM_LIMIT="2g"
+export ELASTIC_MEM_LIMIT="3g"
 
 # Create our elastic system user for mount permissions (it will harmlessly exit if the user already exists):
 adduser elastic --system --no-create-home

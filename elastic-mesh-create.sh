@@ -120,6 +120,10 @@ chown -Rf elastic $baseDir
 
 #exit 0
 
+# Now clear out any old entries in /etc/hosts:
+cp /etc/hosts /etc/hosts.bak
+sed -i '/cluster..-/d' /etc/hosts
+
 # Then loop through each cluster to be created as part of the mesh PoC:
 for ((x=1; x<="$1"; x++)); do
 # First cast the loop counter to a string with leading zero if needed:
@@ -165,10 +169,6 @@ for ((x=1; x<="$1"; x++)); do
 
 # Finally, run envsubst to substitute the instance Id in the docker compose template file and pipe the result via stdin to docker compose:
 	export instance=$instance && envsubst < /opt/elastic-data-mesh/docker-compose-mesh-node.yml | docker compose -p mesh-cluster$instance -f - up -d
-
-# Now clear out any old entries in /etc/hosts:
-cp /etc/hosts /etc/hosts.bak
-sed -i '/cluster..-/d' /etc/hosts
 
 # And grab the latest IP addresses for the containers and add to /etc/hosts:
 	declare elasticIP=$(docker exec cluster$instance-elastic hostname -I)

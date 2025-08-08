@@ -16,12 +16,15 @@ else
 	cmd=$1
 fi
 
-export ELASTIC_PASSWORD=changeme
-export KIBANA_PASSWORD=changeme
-export ENCRYPTION_KEY=c34d38b3a14956121ff2170e5030b471551370178f43e5626eec58b04a30fae2
-export STACK_VERSION=8.18.1
-export KB_MEM_LIMIT="2g"
+elasticUID=$(id -u elastic)
+
+export ENCRYPTION_KEY=c34d38b3a14956121ff2170e5030b471551370178f43e5626eec58b04a30fae2 # Not used but needed as it's in the docker compose file
 export ELASTIC_MEM_LIMIT="2g"
+export ELASTIC_PASSWORD=changeme
+export ELASTIC_UID=$elasticUID
+export KIBANAB_MEM_LIMIT="2g"
+export KIBANA_PASSWORD=changeme
+export STACK_VERSION=8.18.1
 
 # Run envsubst to substitute the instance Id in the docker compose template file and pipe the result via stdin to docker compose with the relevant command:
 export instance=$instance && envsubst < /opt/elastic-data-mesh/docker-compose-mesh-node.yml | docker compose -p mesh-cluster$instance -f - $cmd

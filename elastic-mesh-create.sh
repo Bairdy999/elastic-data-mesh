@@ -37,20 +37,22 @@ printf "elastic: $randomPassword\n" > $passwordFile
 printf "kibana_system: $randomPassword\n" >> $passwordFile
 printf "kibana_encryption_key: $encryptionKey\n" >> $passwordFile
 
+# Create our elastic system user for mount permissions (it will harmlessly exit if the user already exists):
+adduser elastic --system --no-create-home
+# And grab the UID for the elastic user so Docker can run with the correct user UID
+elasticUID=$(id -u elastic)
 
 # By using the envsubst method to run docker compose, it doesn't read the local .env file so we need to export any required env vars here (change as needed):
+export CLUSTER_COUNT=$1
+export ELASTIC_MEM_LIMIT="3g"
 export ELASTIC_PASSWORD=$randomPassword
+export ELASTIC_UID=$elasticUID
+export ENCRYPTION_KEY=$encryptionKey
+export KIBANA_MEM_LIMIT="2g"
 export KIBANA_PASSWORD=$randomPassword
 # Default encryption key as provided by Elastic is well-known so generate a new random key
 # export ENCRYPTION_KEY=c34d38b3a14956121ff2170e5030b471551370178f43e5626eec58b04a30fae2
-export ENCRYPTION_KEY=$encryptionKey
 export STACK_VERSION=8.18.1
-export CLUSTER_COUNT=$1
-export KB_MEM_LIMIT="2g"
-export ELASTIC_MEM_LIMIT="3g"
-
-# Create our elastic system user for mount permissions (it will harmlessly exit if the user already exists):
-adduser elastic --system --no-create-home
 
 # Setup our base mount point (see /etc/fstab for mount point details, create/configure as needed for your environment):
 elasticBaseDir="/mnt/data/mesh/"

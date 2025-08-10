@@ -1,8 +1,8 @@
 #!/bin/bash
-# Usage: ./elastic-mesh-create.sh x (where x is the number of clusters to create via Docker Compose)
+# Usage: ./elastic-mesh-create.sh x <reset> (where x is the number of clusters to create via Docker Compose, optionally pass reset to remove all existing clusters)
 
 if [[ $# -eq 0 ]] ; then
-    echo 'Usage: ./elastic-mesh-create.sh x (where x is the number of clusters to create via Docker Compose)'
+    echo './elastic-mesh-create.sh x <reset> (where x is the number of clusters to create via Docker Compose, optionally pass reset to remove all existing clusters)'
     exit 0
 fi
 
@@ -32,7 +32,6 @@ elasticPassword=""
 kibanaPassword=""
 enryptionKey=""
 credsFile="$baseDir/credentials.txt"
-# echo $credsFile
 
 if [ -f $credsFile ]; then
 # Read in the key/value pairs from the cred file it it already exists (we don't want to overwrite the elastic password!)
@@ -59,10 +58,6 @@ else
 	printf "kibana_system=$kibanaPassword\n" >> $passwordFile
 	printf "kibana_encryption_key=$encryptionKey\n" >> $passwordFile
 fi
-#echo "elastic password = $elasticPassword"
-#echo "kibana_system password = $kibanaPassword"
-#echo "encryptionKey = $encryptionKey"
-#exit 0
 
 # Create our elastic system user for mount permissions (it will harmlessly exit if the user already exists):
 adduser elastic --system --no-create-home

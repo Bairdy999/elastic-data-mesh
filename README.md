@@ -46,7 +46,7 @@ When `elastic-mesh-create.sh` is run it carries out the following actions (assum
   - Generates an `elasticsearch.yml` config file containing relevant networking and security settings
   - Generates a `kibana.yml` config file containing relevant networking and security settings (this includes a banner heading to identify the cluster when logged into Kibana; this avoids confusion and/or error!)
   - Runs Docker Compose to create Elasticsearch and Kibana containers for each cluster, using the already generated configuration and artefacts (e.g. CA certs)
-  - Adds the container IP addresses to /etc/hosts for each container
+  - Adds the container IP addresses to `/etc/hosts` for each container
   - Configures each cluster as a remote cluster for every other cluster in the data mesh
   - Generates a cross-cluster API key for each cluster and writes it to a local file in the cluster
 
@@ -87,5 +87,10 @@ There are advantages and disadvantages of each approach but a separate VM is a m
 ## Running the scripts
 
 ### elastic-mesh-create.sh
+Usage:
+| Command | Argument 1 | Argument 2 |
+| ------------- | ------------- |
+! elastic-mesh-create.sh Number of clusters, passed as an integer | <reset> |
+
 
 ### elastic-mesh-manage.sh

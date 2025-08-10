@@ -74,6 +74,10 @@ sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/
 sudo apt update
 sudo apt install docker-ce -y
 ```
+## Optional Software
+For representative testing, and for external access to Elasticsearch and Kibana it is very useful to install a reverse proxy. For this project NGINX is the reverse proxy of choice but others can be used. NGINX can be installed in one of two ways:
+- On the same VM as Docker and the data mesh itself
+- On a separate VM with approrpiate network connections to the Docker VM
 
 ## Running the scripts
 

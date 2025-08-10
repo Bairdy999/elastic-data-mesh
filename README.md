@@ -12,7 +12,7 @@ Create a VM with the following specs:
 - CPU: 2 min, max as required
 - Memory: 8GB min, max as required
 - Primary volume: 60GB (or as required)
-- Second volume: 200GB min, max as required (provisioned/mounted as '/mnt/data' for consistency, can be changed as requird)
+- Second volume: 200GB min, max as required (provisioned/mounted as `/mnt/data` for consistency, can be changed as requird)
 
 ## Prerequisites - required software
 Install British English dictionary words for password generation:

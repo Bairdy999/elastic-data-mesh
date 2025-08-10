@@ -1,4 +1,4 @@
-# Elastic Data Mesh - Proof-of-Concept Installer
+# Elastic Data Mesh Proof-of-Concept (PoC)
 ## Introduction
 > [!TIP]
 > For example implentations of the Data Mesh PoC see:
@@ -12,9 +12,9 @@ To that end, this project aims to allow a Proof-of-Concept data mesh to be quick
 
 <img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />
 
-## Proof-of-Concept Description
+## Proof-of-Concept Installer
 
-The PoC consists of the following components:
+The 'installer' consists of the following items:
 | Item  | Description |
 | ------------- | ------------- |
 | [elastic-mesh-create.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-create.sh) | Used to create a data mesh with an arbitrary number of clusters |

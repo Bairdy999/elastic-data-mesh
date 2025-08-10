@@ -1,7 +1,9 @@
 # Elastic Data Mesh - Proof-of-Concept Installer
 ## Introduction
 
+Data Mesh in action with Elasticsearch. Elastic are proposing using Elasticsearch as the core component of a data mesh framework, enabling an apporach that unites the pillars of data mesh into a process to manage distributed data.
 
+<img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />
 
 ## Prerequisites - Docker VM
 > [!NOTE]
@@ -13,8 +15,6 @@ Create a VM with the following specs:
 - Memory: 8GB min, max as required
 - Primary volume: 60GB (or as required)
 - Second volume: 200GB min, max as required (provisioned/mounted as `/mnt/data` for consistency, can be changed as requird)
-
-<img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />
 
 ## Required software
 Install British English dictionary words for password generation:

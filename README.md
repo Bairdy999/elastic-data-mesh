@@ -1,5 +1,5 @@
 # Elastic Data Mesh - Proof-of-Concept Installer
-
+## Introduction
 <img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />
 
 

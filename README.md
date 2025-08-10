@@ -36,7 +36,7 @@ When `elastic-mesh-create.sh` is run it carries out the following actions (assum
   - Writes all generated credentials to a local file
   - Sets up environment variables to be used by Docker Compose for each cluster in the data mesh
 - Iterates over the the required number of clusters and carries out the following for each cluster in the data mesh:
-  - Creates the relevant folders for certs, elastic and kibana on persistent storage (to be subsequently mounted by Docker)
+  - Creates the relevant folders for certificates, elastic and kibana on persistent storage (to be subsequently mounted into each container by Docker)
   - Sets permissions on each folder with the local elastic user as owner
   - Runs a Docker Compose setup container to generate CA certificates for the cluster
   - Copies the CA certs to each of the other clusters for use when configuring remote clusters for cross-cluster-search (CCS)

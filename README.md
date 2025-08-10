@@ -21,9 +21,9 @@ The 'installer' consists of the following components:
 When elastic-mesh-create.sh is run it carries out the following actions (assuming all pre-requisites have been met, see below):
 - Optionally, resets the data mesh by removing any existing clusters (useful to rebuild from scratch or for testing)
 - Creates a Linux elastic user to assign file permissions to, and to run the Elastic containers (if it doesn't already exist)
-- Generates each of the following to be used in all clusters (i.e. the same elastic user password for each cluster)
 > [!CAUTION]
 > We use common passwords and encryption key for all clusters for simplicity and to make testing easier. **DO NOT** use shared credentials such as this in Production environments
+- Generates each of the following to be used in all clusters (i.e. the same elastic user password for each cluster)
   - Generates a randomised elastic user password
   - Generates a randomised kibana_system password
   - Generates a randomised 32-bit (64 hex characters) Kibana encryption key

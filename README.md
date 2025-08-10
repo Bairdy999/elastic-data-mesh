@@ -41,7 +41,7 @@ When `elastic-mesh-create.sh` is run it carries out the following actions (assum
   - Runs a Docker Compose setup container to generate CA certificates for the cluster
   - Copies the CA certs to each of the other clusters for use when configuring remote clusters for cross-cluster-search (CCS)
   - Generates an `elasticsearch.yml` config file containing relevant networking and security settings
-  - Generates a `kibana.yml` config file containing relevant networking and security settings (this inclydes a banner heading to identify the cluster when logged into Kibana; this avoids confusion and/or error!)
+  - Generates a `kibana.yml` config file containing relevant networking and security settings (this includes a banner heading to identify the cluster when logged into Kibana; this avoids confusion and/or error!)
   - Runs Docker Compose to create Elasticsearch and Kibana containers for each cluster, using the already generated configuration and artefacts (e.g. CA certs)
   - Adds the container IP addresses to /etc/hosts for each container
   - Configures each cluster as a remote cluster for every other cluster in the data mesh
@@ -56,14 +56,14 @@ Create a VM with the following specs:
 - CPU: 2 min, max as required
 - Memory: 8GB min, max as required
 - Primary volume: 60GB (or as required)
-- Second volume: 200GB min, max as required (provisioned/mounted as `/mnt/data` for consistency, can be changed as requird)
+- Second volume: 200GB min, max as required (provisioned/mounted as `/mnt/data` for consistency, can be changed as required)
 
 ## Required software
 Install British English dictionary words for passphrase generation:
 > [!NOTE]  
 > Other languages are available for installation in `/usr/share/dict`, e.g. [wfrench](https://pkgs.org/download/wfrench), [wspanish](https://pkgs.org/download/wspanish) etc
 ```
-sudo apt-get install wbritish # Installs to /user/share/dict
+sudo apt-get install wbritish # Installs to /usr/share/dict
 ```
 Install Docker:
 ```

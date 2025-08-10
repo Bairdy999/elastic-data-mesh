@@ -78,6 +78,7 @@ sudo apt install docker-ce -y
 For representative testing, and for external access to Elasticsearch and Kibana it is very useful to install a reverse proxy. For this project NGINX is the reverse proxy of choice but others can be used. NGINX can be installed in one of two ways:
 - On the same VM as Docker and the data mesh itself
 - On a separate VM with appropriate network connections to the Docker VM  
+  
 There are advantages and disadvantages of each approach but a separate VM is a more robust and scaleable pattern. It is left to the reader to implement as per their preference but see [AWS implementation](Implementations/AWS) for an example of deploying into AWS with NGINX in a public subnet and Docker in a private subnet
 
 ## Running the scripts

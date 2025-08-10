@@ -7,6 +7,8 @@ To that end, this project aims to allow a Proof-of-Concept data mesh to be quick
 
 <img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />
 
+## Proof-of-Concept Installer
+
 The 'installer' consists of the following components:
 | Item  | Description |
 | ------------- | ------------- |
@@ -14,6 +16,18 @@ The 'installer' consists of the following components:
 | [elastic-mesh-manage.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-manage.sh)  |   |
 | [docker-compose-mesh-certs.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-certs.yml) |  |
 | [docker-compose-mesh-node.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-node.yml) |  |
+
+### Installer Actions
+When elastic-mesh-create.sh is run it carries out the following actions (assuming all pre-requisites have been met, see below):
+- Optionally, resets the data mesh by removing any existing clusters (useful to rebuild from scratch or for testing)
+- Creates a Linux elastic user to assign file permissions to, and to run the Elastic containers (if it doesn't already exist)
+- Generates each of the following to be used in all clusters (i.e. the same elastic user password for each cluster)
+> [!CAUTION]
+> We use common passwords and encryption key for all clusters for simplicity and to make testing easier. **DO NOT** use shared credentials such as this in Production environments
+  - Generates a randomised elastic user password
+  - Generates a randomised kibana_system password
+  - Generates a randomised 32-bit (64 hex characters) Kibana encryption key
+- Iterates over the the required number of clusters and creates a CA for each cluster
 
 ## Prerequisites - Docker VM
 > [!NOTE]

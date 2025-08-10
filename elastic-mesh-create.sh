@@ -236,9 +236,9 @@ EOF
 apiKeyTemplate=$(cat <<EOF
 {
   "name": "clusterxx-ccs-api-key",
-  "expiration": "365d",   
+  "expiration": "365d",
   "access": {
-    "search": [  
+    "search": [
       {
         "names": ["mesh*"]
       }
@@ -271,18 +271,24 @@ for ((x=1; x<="$1"; x++)); do
 
 		printf -v remoteInstance "%02d" $y;
 		declare remoteSettings="${remoteTemplate//"xx"/$remoteInstance}"
-		declare json=""
-		json=$(curl -k -H "Content-Type: application/json" -X PUT -d "$remoteSettings" -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_cluster/settings")
+		curl -k -H "Content-Type: application/json" -X PUT -d "$remoteSettings" -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_cluster/settings"
 	done;
 done;
 
 echo "Creating API keys"
+apiKeyFile=""
 for ((x=1; x<="$1"; x++)); do
 # First cast the loop counter to a string with leading zero if needed:
 	declare instance=""
 	printf -v instance "%02d" $x;
 
+	apiKeyFile="$baseDir/cluster$instance/cluster$instance-ccs-api-key.json"
+
 	declare apiKeyRequest="${apiKeyTemplate//"xx"/$instance}"
 	declare json=""
-	json=$(curl -k -H "Content-Type: application/json" -X POST -d "$apiKeyRequest" -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_security/cross_cluster/api_key")
+	json=$(curl -s -k -H "Content-Type: application/json" -X POST -d "$apiKeyRequest" -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_security/cross_cluster/api_key")
+
+#	printf "$json" > $apiKeyFile
+# Pretty print our API key json to file:
+	echo $json | jq > $apiKeyFile
 done;

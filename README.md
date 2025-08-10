@@ -23,7 +23,7 @@ When elastic-mesh-create.sh is run it carries out the following actions (assumin
 - Creates a Linux elastic user to assign file permissions to, and to run the Elastic containers (if it doesn't already exist)
 - Creates an external Docker network on the VM (for inter-container networking to avoid creating a large number of routes between each cluster network)
 > [!CAUTION]
-> Commoon passwords and encryption key are used for all clusters here for as it's intended as a PoC, for simplicity and to make testing easier. **Disclaimer: DO NOT** use common/shared credentials such as this in Production environments, do so at your own risk!
+> Common passwords and encryption key are used for all clusters here for as it's intended as a PoC, for simplicity and to make testing easier. **Disclaimer: DO NOT** use common/shared credentials such as this in Production environments, do so at your own risk!
 - Carries out each of the following for use by all clusters (i.e. the same elastic user password for each cluster)
   - Generates a randomised elastic user password
   - Generates a randomised kibana_system password

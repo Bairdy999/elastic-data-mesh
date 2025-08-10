@@ -12,10 +12,10 @@ To that end, this project aims to allow a Proof-of-Concept data mesh to be quick
 The 'installer' consists of the following components:
 | Item  | Description |
 | ------------- | ------------- |
-| [elastic-mesh-create.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-create.sh) |   |
-| [elastic-mesh-manage.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-manage.sh)  |   |
-| [docker-compose-mesh-certs.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-certs.yml) |  |
-| [docker-compose-mesh-node.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-node.yml) |  |
+| [elastic-mesh-create.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-create.sh) | Used to create a data mesh with an arbitrary number of clusters |
+| [elastic-mesh-manage.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-manage.sh)  | Used to subsequently manage individual clusters via Docker Compose |
+| [docker-compose-mesh-certs.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-certs.yml) | The Docker Compose file used by setup to generate CA certs for each cluster in the data mesh |
+| [docker-compose-mesh-node.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-node.yml) | The Docker Compose file used to create and configure each cluster in the data mesh |
 
 ### Installer Actions
 When elastic-mesh-create.sh is run it carries out the following actions (assuming all pre-requisites have been met, [see below](https://github.com/Bairdy999/elastic-data-mesh/blob/main/README.md#prerequisites---docker-vm)):
@@ -23,7 +23,7 @@ When elastic-mesh-create.sh is run it carries out the following actions (assumin
 - Creates a Linux elastic user to assign file permissions to, and to run the Elastic containers (if it doesn't already exist)
 - Creates an external Docker network on the VM (for inter-container networking to avoid creating a large number of routes between each cluster network)
 > [!CAUTION]
-> We use common passwords and encryption key for all clusters for simplicity and to make testing easier. **DO NOT** use common/shared credentials such as this in Production environments
+> Commoon passwords and encryption key are used for all clusters here for as it's intended as a PoC, for simplicity and to make testing easier. **Disclaimer: DO NOT** use common/shared credentials such as this in Production environments, do so at your own risk!
 - Carries out each of the following for use by all clusters (i.e. the same elastic user password for each cluster)
   - Generates a randomised elastic user password
   - Generates a randomised kibana_system password
@@ -36,11 +36,11 @@ When elastic-mesh-create.sh is run it carries out the following actions (assumin
   - Runs a Docker Compose setup container to generate CA certificates for the cluster
   - Copies the CA certs to each of the other clusters for use when configuring remote clusters for cross-cluster-search (CCS)
   - Generates an elasticsearch.yml config file containing relevant networking and security settings
-  - Generates a kibana.yml config file containing relevant networking and security settings (this inclydes a banner heading to identify the cluster when logged into Kibana)
+  - Generates a kibana.yml config file containing relevant networking and security settings (this inclydes a banner heading to identify the cluster when logged into Kibana; this avoids confusion and/or error!)
   - Runs Docker Compose to create Elasticsearch and Kibana containers for each cluster, using the already generated configuration and artefacts (e.g. CA certs)
   - Adds the container IP addresses to /etc/hosts for each container
   - Configures each cluster as a remote cluster for every other cluster in the data mesh
-  - Generates a cross-cluster API key for each cluster 
+  - Generates a cross-cluster API key for each cluster and writes it to a local file in the cluster
 
 ## Prerequisites - Docker VM
 > [!NOTE]

@@ -10,7 +10,7 @@ To that end, this project aims to allow a Proof-of-Concept data mesh to be quick
 The 'installer' consists of the following components:
 | Item  | Description |
 | ------------- | ------------- |
-| elastic-mesh-create.sh |   |
+| [elastic-mesh-create.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-create.sh) |   |
 | elastic-mesh-manage.sh  |   |
 
 ## Prerequisites - Docker VM

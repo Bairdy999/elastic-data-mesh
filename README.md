@@ -11,7 +11,9 @@ The 'installer' consists of the following components:
 | Item  | Description |
 | ------------- | ------------- |
 | [elastic-mesh-create.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-create.sh) |   |
-| elastic-mesh-manage.sh  |   |
+| [elastic-mesh-manage.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-manage.sh)  |   |
+| [docker-compose-mesh-certs.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-certs.yml) |  |
+| [docker-compose-mesh-node.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-node.yml) |  |
 
 ## Prerequisites - Docker VM
 > [!NOTE]

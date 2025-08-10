@@ -1,5 +1,10 @@
 # Elastic Data Mesh - Proof-of-Concept Installer
 ## Introduction
+> [!TIP]
+> For exmaple implentations of the Data Mesh PoC see:
+> - [AWS implementation](https://github.com/Bairdy999/elastic-data-mesh/tree/main/Implementations/AWS)
+> - [Ingesting UK Police stop-and-search data into the data mesh](https://github.com/Bairdy999/police-uk-data-ingest)
+> - Coming soon - Police UK data app based on NextJS/Elastic MCP and RAG demonstrators
 
 Data Mesh in action with Elasticsearch. Elastic are proposing using [Elasticsearch as the core component of a data mesh framework](https://www.elastic.co/blog/data-mesh-public-sector), enabling an approach that unites the pillars of data mesh into a process to manage distributed data.  
   

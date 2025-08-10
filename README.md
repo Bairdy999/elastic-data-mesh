@@ -85,12 +85,18 @@ For representative testing, and for external access to Elasticsearch and Kibana 
 There are advantages and disadvantages of each approach but a separate VM is a more robust and scaleable pattern. It is left to the reader to implement as per their preference but see [AWS implementation](Implementations/AWS) for an example of deploying into AWS with NGINX in a public subnet and Docker in a private subnet
 
 ## Running the scripts
+### Installation
+Clone this github repo to a suitable Docker VM in your environment, e.g. assuming `/opt/elastic-data-mesh` is to be used:
+```
+cd /opt
+git clone https://github.com/Bairdy999/elastic-data-mesh.git
+cd /opt/elastic-data-mesh
+```
 
 ### elastic-mesh-create.sh
-Usage:
 | Command | Argument 1 | Argument 2 |
 | ------------- | ------------- | ------------- |
 | elastic-mesh-create.sh | Number of clusters, passed as an integer | <reset> |
-
+Example usage: ``
 
 ### elastic-mesh-manage.sh

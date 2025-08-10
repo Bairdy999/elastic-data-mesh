@@ -30,8 +30,8 @@ When elastic-mesh-create.sh is run it carries out the following actions (assumin
 > [!CAUTION]
 > Common passwords and encryption key are used for all clusters here for as it's intended as a PoC, for simplicity and to make testing easier. **Disclaimer: DO NOT** use common/shared credentials such as this in Production environments, do so at your own risk!
 - Carries out each of the following for use by all clusters (i.e. the same elastic user password for each cluster)
-  - Generates a randomised elastic user password
-  - Generates a randomised kibana_system password
+  - Generates a randomised elastic user passphrase
+  - Generates a randomised kibana_system passphrase
   - Generates a randomised 32-bit (64 hex characters) Kibana encryption key
   - Writes all generated credentials to a local file
   - Sets up environment variables to be used by Docker Compose for each cluster in the data mesh
@@ -59,9 +59,11 @@ Create a VM with the following specs:
 - Second volume: 200GB min, max as required (provisioned/mounted as `/mnt/data` for consistency, can be changed as requird)
 
 ## Required software
-Install British English dictionary words for password generation:
+Install British English dictionary words for passphrase generation:
+> [!NOTE]  
+> Other languages are available for installation in `/usr/share/dict`, e.g. [wfrench](https://pkgs.org/download/wfrench), [wspanish](https://pkgs.org/download/wspanish) etc
 ```
-sudo apt-get install wbritish
+sudo apt-get install wbritish # Installs to /user/share/dict
 ```
 Install Docker:
 ```

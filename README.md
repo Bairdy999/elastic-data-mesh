@@ -89,8 +89,8 @@ There are advantages and disadvantages of each approach but a separate VM is a m
 ### elastic-mesh-create.sh
 Usage:
 | Command | Argument 1 | Argument 2 |
-| ------------- | ------------- |
-! elastic-mesh-create.sh Number of clusters, passed as an integer | <reset> |
+| ------------- | ------------- | ------------- |
+| elastic-mesh-create.sh | Number of clusters, passed as an integer | <reset> |
 
 
 ### elastic-mesh-manage.sh

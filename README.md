@@ -1,7 +1,7 @@
 # Elastic Data Mesh - Proof-of-Concept Installer
 ## Introduction
 
-Data Mesh in action with Elasticsearch. Elastic are proposing using Elasticsearch as the core component of a data mesh framework, enabling an apporach that unites the pillars of data mesh into a process to manage distributed data.
+Data Mesh in action with Elasticsearch. Elastic are proposing using [Elasticsearch as the core component of a data mesh framework](https://www.elastic.co/blog/data-mesh-public-sector), enabling an apporach that unites the pillars of data mesh into a process to manage distributed data.
 
 <img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />
 

@@ -28,3 +28,9 @@ sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/
 sudo apt update
 sudo apt install docker-ce -y
 ```
+
+## Running the scripts
+
+### elastic-mesh-create.sh
+
+### elastic-mesh-manage.sh

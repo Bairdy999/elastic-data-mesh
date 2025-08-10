@@ -13,6 +13,12 @@ if [[ "$osType" == "Darwin" ]]; then
 	exit 0
 fi;
 
+# If wer'e passed a reset then remove all existing data:
+if [[ "$2" == "reset" ]]; then
+	echo "Removing all existing data for reset..."
+	rm -Rf /mnt/data/mesh
+fi
+
 # First create our base directory if it doesn't exist (this assumes the data volume is mounted at /mnt/data if Linux, /opt/dat if Mac):
 baseDir="/mnt/data/mesh"
 
@@ -22,34 +28,56 @@ fi;
 
 mkdir -p $baseDir
 
+elasticPassword=""
+kibanaPassword=""
+enryptionKey=""
+credsFile="$baseDir/credentials.txt"
+# echo $credsFile
+
+if [ -f $credsFile ]; then
+# Read in the key/value pairs from the cred file it it already exists (we don't want to overwrite the elastic password!)
+	echo "File $credsFile exists..."
+	elasticPassword=$(grep elastic $credsFile | awk -F= '{print $2}')
+	kibanaPassword=$(grep kibana_system $credsFile | awk -F= '{print $2}')
+	encryptionKey=$(grep kibana_encryption_key $credsFile | awk -F= '{print $2}')
+else
 # Then generate a password for the elastic and kibana_system users (only works on Linux, change on MacOS):
-randomPassword="changeme999"
-if [[ "$osType" != "Darwin" ]]; then
-	randomPassword=$(WORDS=3; LC_ALL=C grep -x '[a-z]*' /usr/share/dict/words | shuf --random-source=/dev/urandom -n ${WORDS} | paste -sd "-")
-fi;
+	echo "Generating password for elastic and kibana_system users..."
+	if [[ "$osType" != "Darwin" ]]; then
+		elasticPassword=$(WORDS=3; LC_ALL=C grep -x '[a-z]*' /usr/share/dict/words | shuf --random-source=/dev/urandom -n ${WORDS} | paste -sd "-")
+		kibanaPassword=$(WORDS=3; LC_ALL=C grep -x '[a-z]*' /usr/share/dict/words | shuf --random-source=/dev/urandom -n ${WORDS} | paste -sd "-")
+	fi;
 
 # And also the Kibana encryption key
-encryptionKey=$(hexdump -vn32 -e'8/4 "%08X" 1 "\n"' /dev/urandom)
+	echo "Generating Kibana encryption key..."
+	encryptionKey=$(hexdump -vn32 -e'8/4 "%08X" 1 "\n"' /dev/urandom)
 
 # Then write the credentials to a file:
-declare passwordFile="$baseDir/credentials.txt"
-printf "elastic: $randomPassword\n" > $passwordFile
-printf "kibana_system: $randomPassword\n" >> $passwordFile
-printf "kibana_encryption_key: $encryptionKey\n" >> $passwordFile
+	declare passwordFile="$baseDir/credentials.txt"
+	echo "Writing credentials to $passwordFile"
+	printf "elastic=$elasticPassword\n" > $passwordFile
+	printf "kibana_system=$kibanaPassword\n" >> $passwordFile
+	printf "kibana_encryption_key=$encryptionKey\n" >> $passwordFile
+fi
+#echo "elastic password = $elasticPassword"
+#echo "kibana_system password = $kibanaPassword"
+#echo "encryptionKey = $encryptionKey"
+#exit 0
 
 # Create our elastic system user for mount permissions (it will harmlessly exit if the user already exists):
 adduser elastic --system --no-create-home
 # And grab the UID for the elastic user so Docker can run with the correct user UID
 elasticUID=$(id -u elastic)
+echo "elastic user UID: $elasticUID"
 
 # By using the envsubst method to run docker compose, it doesn't read the local .env file so we need to export any required env vars here (change as needed):
 export CLUSTER_COUNT=$1
 export ELASTIC_MEM_LIMIT="3g"
-export ELASTIC_PASSWORD=$randomPassword
+export ELASTIC_PASSWORD=$elasticPassword
 export ELASTIC_UID=$elasticUID
 export ENCRYPTION_KEY=$encryptionKey
 export KIBANA_MEM_LIMIT="2g"
-export KIBANA_PASSWORD=$randomPassword
+export KIBANA_PASSWORD=$kibanaPassword
 # Default encryption key as provided by Elastic is well-known so generate a new random key
 # export ENCRYPTION_KEY=c34d38b3a14956121ff2170e5030b471551370178f43e5626eec58b04a30fae2
 export STACK_VERSION=8.18.1
@@ -179,7 +207,7 @@ for ((x=1; x<="$1"; x++)); do
 #echo $elasticIP
 done;
 
-# And set up the remote clusters in each cluster:
+# And set up the templates for each cluster:
 # Template to add remote cluster settings:
 remoteTemplate=$(cat <<EOF
 {
@@ -204,6 +232,30 @@ remoteTemplate=$(cat <<EOF
 EOF
 )
 
+# Template to create API key:
+apiKeyTemplate=$(cat <<EOF
+{
+  "name": "clusterxx-ccs-api-key",
+  "expiration": "365d",   
+  "access": {
+    "search": [  
+      {
+        "names": ["mesh*"]
+      }
+    ]
+  },
+  "metadata": {
+    "description": "elastic-data-mesh-poc",
+    "environment": {
+      "level": 1,
+      "trusted": true,
+      "tags": ["dev", "poc"]
+    }
+  }
+}
+EOF
+)
+
 echo "Adding remote clusters"
 for ((x=1; x<="$1"; x++)); do
 # First cast the loop counter to a string with leading zero if needed:
@@ -219,6 +271,18 @@ for ((x=1; x<="$1"; x++)); do
 
 		printf -v remoteInstance "%02d" $y;
 		declare remoteSettings="${remoteTemplate//"xx"/$remoteInstance}"
-		curl -k -H "Content-Type: application/json" -X PUT -d "$remoteSettings" -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_cluster/settings"
+		declare json=""
+		json=$(curl -k -H "Content-Type: application/json" -X PUT -d "$remoteSettings" -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_cluster/settings")
 	done;
+done;
+
+echo "Creating API keys"
+for ((x=1; x<="$1"; x++)); do
+# First cast the loop counter to a string with leading zero if needed:
+	declare instance=""
+	printf -v instance "%02d" $x;
+
+	declare apiKeyRequest="${apiKeyTemplate//"xx"/$instance}"
+	declare json=""
+	json=$(curl -k -H "Content-Type: application/json" -X POST -d "$apiKeyRequest" -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_security/cross_cluster/api_key")
 done;

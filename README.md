@@ -1,6 +1,6 @@
 # Elastic Data Mesh - Proof-of-Concept Installer
 ## Introduction
-<img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />
+
 
 
 ## Prerequisites - Docker VM
@@ -14,7 +14,9 @@ Create a VM with the following specs:
 - Primary volume: 60GB (or as required)
 - Second volume: 200GB min, max as required (provisioned/mounted as `/mnt/data` for consistency, can be changed as requird)
 
-## Prerequisites - required software
+<img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />
+
+## Required software
 Install British English dictionary words for password generation:
 ```
 sudo apt-get install wbritish

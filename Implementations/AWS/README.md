@@ -1,6 +1,7 @@
 # Implementing Elastic Data Mesh PoC on AWS
 
 
-<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/a386014e-c051-400a-9d5c-8b29f92243df" />
+![Cloud Architecture - Page 1](https://github.com/user-attachments/assets/f9b333be-6fde-496a-aa2e-df02b1c14f7d)
+
 
 

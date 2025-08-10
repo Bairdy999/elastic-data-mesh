@@ -21,13 +21,26 @@ The 'installer' consists of the following components:
 When elastic-mesh-create.sh is run it carries out the following actions (assuming all pre-requisites have been met, [see below](https://github.com/Bairdy999/elastic-data-mesh/blob/main/README.md#prerequisites---docker-vm)):
 - Optionally, resets the data mesh by removing any existing clusters (useful to rebuild from scratch or for testing)
 - Creates a Linux elastic user to assign file permissions to, and to run the Elastic containers (if it doesn't already exist)
+- Creates an external Docker network on the VM (for inter-container networking to avoid creating a large number of routes between each cluster network)
 > [!CAUTION]
-> We use common passwords and encryption key for all clusters for simplicity and to make testing easier. **DO NOT** use shared credentials such as this in Production environments
-- Generates each of the following to be used in all clusters (i.e. the same elastic user password for each cluster)
+> We use common passwords and encryption key for all clusters for simplicity and to make testing easier. **DO NOT** use common/shared credentials such as this in Production environments
+- Carries out each of the following for use by all clusters (i.e. the same elastic user password for each cluster)
   - Generates a randomised elastic user password
   - Generates a randomised kibana_system password
   - Generates a randomised 32-bit (64 hex characters) Kibana encryption key
-- Iterates over the the required number of clusters and creates a CA for each cluster
+  - Writes all generated credentials to a local file
+  - Sets up environment variables to be used by Docker Compose for each cluster in the data mesh
+- Iterates over the the required number of clusters and carries out the following for each cluster in the data mesh:
+  - Creates the relevant folders for certs, elastic and kibana on persistent storage (to be subsequently mounted by Docker)
+  - Sets permissions on each folder with the local elastic user as owner
+  - Runs a Docker Compose setup container to generate CA certificates for the cluster
+  - Copies the CA certs to each of the other clusters for use when configuring remote clusters for cross-cluster-search (CCS)
+  - Generates an elasticsearch.yml config file containing relevant networking and security settings
+  - Generates a kibana.yml config file containing relevant networking and security settings (this inclydes a banner heading to identify the cluster when logged into Kibana)
+  - Runs Docker Compose to create Elasticsearch and Kibana containers for each cluster, using the already generated configuration and artefacts (e.g. CA certs)
+  - Adds the container IP addresses to /etc/hosts for each container
+  - Configures each cluster as a remote cluster for every other cluster in the data mesh
+  - Generates a cross-cluster API key for each cluster 
 
 ## Prerequisites - Docker VM
 > [!NOTE]

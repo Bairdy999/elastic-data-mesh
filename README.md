@@ -1,6 +1,9 @@
 # Elastic Data Mesh - Proof-of-Concept Installer
 
-## Prerequisites - VM
+<img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />
+
+
+## Prerequisites - Docker VM
 > [!NOTE]
 > Ubuntu 24.04 LTS is used to run Docker and the Elasticsearch data mesh clusters but feel free to use a Linux flavour of your choice that supports Docker
 

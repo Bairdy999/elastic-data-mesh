@@ -18,7 +18,7 @@ The 'installer' consists of the following components:
 | [docker-compose-mesh-node.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-node.yml) |  |
 
 ### Installer Actions
-When elastic-mesh-create.sh is run it carries out the following actions (assuming all pre-requisites have been met, see below):
+When elastic-mesh-create.sh is run it carries out the following actions (assuming all pre-requisites have been met, [see below](https://github.com/Bairdy999/elastic-data-mesh/blob/main/README.md#prerequisites---docker-vm)):
 - Optionally, resets the data mesh by removing any existing clusters (useful to rebuild from scratch or for testing)
 - Creates a Linux elastic user to assign file permissions to, and to run the Elastic containers (if it doesn't already exist)
 > [!CAUTION]

@@ -1,13 +1,15 @@
 # Elastic Data Mesh Proof-of-Concept (PoC)
 ## Introduction - Data Mesh in action with Elasticsearch
 > [!TIP]
-> For example implentations of the Data Mesh PoC see:
+> For example implentations/usage of the Data Mesh PoC see:
 > - [AWS implementation](Implementations/AWS)
 > - [Ingesting UK Police stop-and-search data into the data mesh](https://github.com/Bairdy999/police-uk-data-ingest)
 > - Coming soon - Police UK data mesh app based on NextJS/Elastic MCP and RAG demonstrators
 
 Elastic are proposing using [Elasticsearch as the core component of a data mesh framework](https://www.elastic.co/blog/data-mesh-public-sector), enabling an approach that unites the pillars of data mesh into a process to manage, and comprehensively search, distributed data.  
-  
+
+> [!NOTE]
+> This project is aimed at self-managed and/or air-gapped environments. Integration with Elastic Cloud Hosting or Serverless will be added in future iterations
 To that end, this project aims to allow a Proof-of-Concept data mesh to be quickly created. It uses Docker Compose to easily create an arbitrary number of single-node Elasticsearch clusters running as Docker containers, each configured as a remote cluster for the others, along with a corresponding Kibana instance. The diagram below illustrates this concept (**Note:** the number of containers/clusters is only limited by the resources available to a single Docker VM. It is left as an exercise to the reader to expand this project to run across multiple Docker VMs).
 
 <img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />

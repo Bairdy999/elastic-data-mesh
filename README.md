@@ -1,6 +1,6 @@
 # Elastic Data Mesh Proof-of-Concept (PoC)
 ## Introduction - Data Mesh in action with Elasticsearch
-Elastic are excited to propose using [Elasticsearch as the core component of a data mesh framework](https://www.elastic.co/blog/data-mesh-public-sector), enabling an approach that unites the four pillars of a data mesh into a process to manage, and comprehensively search, distributed data.  
+Elastic have proposed using [Elasticsearch as the core component of a data mesh framework](https://www.elastic.co/blog/data-mesh-public-sector), enabling an approach that unites the four pillars of a data mesh into a process to manage, and comprehensively search, distributed data.  
 
 > [!TIP]
 > For example implentations/usage of the Data Mesh PoC see:

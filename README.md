@@ -96,9 +96,9 @@ cd /opt/elastic-data-mesh
 ### Creating a data mesh cluster
 | Command | Argument 1 | Argument 2 |
 | ------------- | ------------- | ------------- |
-| elastic-mesh-create.sh | Number of clusters, mandatory passed as an integer | reset, optional |
+| elastic-mesh-create.sh | Number of clusters, mandatory, passed as an integer | reset, optional |
   
-Example usage to create 8 clusters in the data mesh and remove any existing clusters: `sudo ./elastic-mesh-create.sh 8 reset`
+Example usage to create a data mesh with 8 clusters and remove any existing clusters: `sudo ./elastic-mesh-create.sh 8 reset`
 
 ### Managing the data mesh cluster
 

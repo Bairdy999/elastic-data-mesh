@@ -96,7 +96,8 @@ cd /opt/elastic-data-mesh
 
 ### Creating a data mesh cluster
 #### Items of note
-
+- As Docker compose doesn't support dynamic runtime variables (i.e. environment variables aren't dynamic variables), the docker compose YAML file is treated as a template, passed to the [envsubst](https://manpages.ubuntu.com/manpages/noble/man1/envsubst.1.html) process to inject the cluster instance number and pass the resultant YAML to Docker compose via stdin
+- 
 | Script | Argument 1 | Argument 2 |
 | ------------- | ------------- | ------------- |
 | [elastic-mesh-create.sh](elastic-mesh-create.sh) | Number of clusters, mandatory, integer | "reset", string, optional |

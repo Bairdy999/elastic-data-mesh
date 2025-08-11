@@ -20,10 +20,10 @@ To that end, this project aims to allow a Proof-of-Concept data mesh to be quick
 The 'installer' consists of the following items:
 | Item  | Description |
 | ------------- | ------------- |
-| [elastic-mesh-create.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-create.sh) | Used to create a data mesh with an arbitrary number of clusters |
-| [elastic-mesh-manage.sh](https://github.com/Bairdy999/elastic-data-mesh/blob/main/elastic-mesh-manage.sh)  | Used to subsequently manage individual clusters via Docker Compose |
-| [docker-compose-mesh-certs.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-certs.yml) | The Docker Compose file used by setup to generate CA certs for each cluster in the data mesh |
-| [docker-compose-mesh-node.yml](https://github.com/Bairdy999/elastic-data-mesh/blob/main/docker-compose-mesh-node.yml) | The Docker Compose file used to create and configure each cluster in the data mesh |
+| [elastic-mesh-create.sh](elastic-mesh-create.sh) | Used to create a data mesh with an arbitrary number of clusters |
+| [elastic-mesh-manage.sh](elastic-mesh-manage.sh)  | Used to subsequently manage individual clusters via Docker Compose |
+| [docker-compose-mesh-certs.yml](docker-compose-mesh-certs.yml) | The Docker Compose file used by setup to generate CA certs for each cluster in the data mesh |
+| [docker-compose-mesh-node.yml](docker-compose-mesh-node.yml) | The Docker Compose file used to create and configure each cluster in the data mesh |
 
 ### Installer Actions
 When `elastic-mesh-create.sh` is run it carries out the following actions (assuming all pre-requisites have been met, [see below](https://github.com/Bairdy999/elastic-data-mesh/blob/main/README.md#prerequisites---docker-vm)):

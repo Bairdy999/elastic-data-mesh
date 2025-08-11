@@ -104,7 +104,7 @@ Example usage to create a data mesh with 8 clusters and remove any existing clus
 
 | Command | Argument 1 | Argument 2 | Argument 3 |
 | ------------- | ------------- | ------------- | ------------- |
-| elastic-mesh-manage.sh | Docker compose command, e.g. up/down/restart, mandatory | Start cluster for command, mandatory | Number of clusters to apply command to, optional, defaults to 1 |
+| elastic-mesh-manage.sh | Docker compose command, e.g. up/down/restart, mandatory | Start cluster, mandatory | Number of clusters to apply command to, optional, defaults to 1 |
   
 Example usage to restart 8 clusters in the data mesh starting from cluster 1: `sudo ./elastic-mesh-manage.sh restart 1 8`
 

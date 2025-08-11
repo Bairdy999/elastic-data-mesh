@@ -4,10 +4,12 @@ To provision a fairly representative data mesh PoC, AWS is the ideal platform to
 
 ![Cloud Architecture - Page 1](https://github.com/user-attachments/assets/f9b333be-6fde-496a-aa2e-df02b1c14f7d)
 
-## CloudFormation Template
-
-
 ## Cloud Components
+
+  
+## CloudFormation Template
+The above design can be deployed in AWS with CloufFormation using the provided [mesh-data-vpc.json](mesh-data-vpc.json) template
+
 
 
 

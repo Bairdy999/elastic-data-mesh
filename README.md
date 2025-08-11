@@ -98,7 +98,8 @@ cd /opt/elastic-data-mesh
 | ------------- | ------------- | ------------- |
 | [elastic-mesh-create.sh](elastic-mesh-create.sh) | Number of clusters, mandatory, integer | "reset", string, optional |
   
-Example usage to create a data mesh with 8 clusters and remove any existing clusters: `sudo /opt/elastic-mesh-create.sh 8 reset`
+Example usage to create a data mesh with 8 clusters and remove any existing clusters:  
+`sudo /opt/elastic-mesh-create.sh 8 reset`
 
 ### Managing the data mesh cluster
 
@@ -106,5 +107,6 @@ Example usage to create a data mesh with 8 clusters and remove any existing clus
 | ------------- | ------------- | ------------- | ------------- |
 | [elastic-mesh-manage.sh](elastic-mesh-manage.sh) | Docker compose command, mandatory, string, e.g. up/down/restart | Start cluster, mandatory, integer | Number of clusters to apply command to, optional, integer, defaults to 1 |
   
-Example usage to restart 8 clusters in the data mesh starting from cluster 1: `sudo /opt/elastic-mesh-manage.sh restart 1 8`
+Example usage to restart 8 clusters in the data mesh starting from cluster 1:  
+`sudo /opt/elastic-mesh-manage.sh restart 1 8`
 

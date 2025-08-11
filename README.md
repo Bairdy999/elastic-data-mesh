@@ -95,10 +95,12 @@ cd /opt/elastic-data-mesh
 ```
 
 ### Creating a data mesh cluster
-#### Items of note
-- As Docker Compose doesn't support dynamic runtime variables, e.g. in a `for` loop for the cluster instance number (standard environment variables themselves aren't dynamic variables in the same context), the Docker Compose YAML file is treated as a template, passed to the [envsubst](https://manpages.ubuntu.com/manpages/noble/man1/envsubst.1.html) process to inject the cluster instance number, and then pipe the resultant YAML to Docker Compose via stdin
-- When `envsubst` is used, Docker compose can't/doesn't read from a local .env file if it exists (normally it does if ran directly). Any environment variables intended to be used by containers therefore need to be export priot to runnign Docker Compose in this manner
-- 
+#### Items of note (and current limitations/constraints/gotchas)
+- As Docker Compose doesn't support dynamic runtime variables, e.g. in a `for` loop for the cluster instance number (standard environment variables themselves aren't dynamic variables in the same context), the Docker Compose YAML file is treated as a template, passed to the [envsubst](https://manpages.ubuntu.com/manpages/noble/man1/envsubst.1.html) process to inject the cluster instance number, and then pipe the resultant YAML to Docker Compose via stdin. As such it cannot currently be used directly with Docker Compose.
+- When `envsubst` is used, Docker compose can't/doesn't read from a local .env file if it exists (normally it does if ran directly). Any environment variables intended to be used by containers therefore need to be exported priot to running Docker Compose in this manner
+- Things such as the Elasticsearch stack version and Docker container memory limits aren't parameterised (yet) but exported as environment variables to Docker Compose prior to running `envsubst`. Change these directly in the script for now if need be
+- Running in a VM on Proxmox, exporting environment variable `ELASTIC_MEM_LIMIT="2g"` to the container as `mem_limit: ${ELASTIC_MEM_LIMIT}` worked successfully with 8 clusters. On an AWS EC2 instance with 8 clusters this needed to be increased to `ELASTIC_MEM_LIMIT="3g"`otehrwise containers would exit with out-of-memory errors. It is assumed this is a timing issue related to AWS EC2 (YMMV - your mileage may vary!)
+- For some reason (and it appears to be a known issue), if environment variables AND an `elasticsearch.yml` file are presented to Elasticsearch in a container, any host binding (e.g. for network, http, transport, etc) must be added for "0.0.0.0" otherwise network connections don't work as expected (this can easily be reproduced by removing the relevant config items for "0.0.0.0" binding).
   
 | Script | Argument 1 | Argument 2 |
 | ------------- | ------------- | ------------- |

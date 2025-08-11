@@ -5,7 +5,7 @@ Elastic have proposed using [Elasticsearch as the core component of a data mesh 
 > [!TIP]
 > For example implentations/usage of the Data Mesh PoC see:
 > - [AWS implementation](Implementations/AWS)
-> - [Ingesting UK Police stop-and-search data into the data mesh](https://github.com/Bairdy999/police-uk-data-ingest)
+> - [Ingesting UK Police stop-and-search data into the data mesh](https://github.com/Bairdy999/police-uk-data-elastic-ingest)
 > - Coming soon - Police UK data mesh app based on NextJS/Elastic MCP and RAG demonstrators
   
 > [!NOTE]

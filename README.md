@@ -96,7 +96,7 @@ cd /opt/elastic-data-mesh
 
 ### Creating a data mesh cluster
 #### Items of note
-- As Docker Compose doesn't support dynamic runtime variables, e.g. in a `for` loop for the cluster instance number (standard environment variables themselves aren't dynamic variables in the same context), the Docker Compose YAML file is treated as a template, passed to the [envsubst](https://manpages.ubuntu.com/manpages/noble/man1/envsubst.1.html) process to inject the cluster instance number to then pass the resultant YAML to Docker Compose via stdin
+- As Docker Compose doesn't support dynamic runtime variables, e.g. in a `for` loop for the cluster instance number (standard environment variables themselves aren't dynamic variables in the same context), the Docker Compose YAML file is treated as a template, passed to the [envsubst](https://manpages.ubuntu.com/manpages/noble/man1/envsubst.1.html) process to inject the cluster instance number, and then pipe the resultant YAML to Docker Compose via stdin
 - When `envsubst` is used, Docker compose can't/doesn't read from a local .env file if it exists (normally it does if ran directly). Any environment variables intended to be used by containers therefore need to be export priot to runnign Docker Compose in this manner
 - 
   

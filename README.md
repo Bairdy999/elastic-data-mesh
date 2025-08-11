@@ -95,6 +95,8 @@ cd /opt/elastic-data-mesh
 ```
 
 ### Creating a data mesh cluster
+#### Items of note
+
 | Script | Argument 1 | Argument 2 |
 | ------------- | ------------- | ------------- |
 | [elastic-mesh-create.sh](elastic-mesh-create.sh) | Number of clusters, mandatory, integer | "reset", string, optional |

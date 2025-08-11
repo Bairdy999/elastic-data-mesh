@@ -91,10 +91,11 @@ Clone this github repo to a suitable Docker VM in your environment, e.g. assumin
 cd /opt
 git clone https://github.com/Bairdy999/elastic-data-mesh.git
 cd /opt/elastic-data-mesh
+./elastic-mesh-create 8
 ```
 
 ### Creating a data mesh cluster
-| Command | Argument 1 | Argument 2 |
+| Script | Argument 1 | Argument 2 |
 | ------------- | ------------- | ------------- |
 | [elastic-mesh-create.sh](elastic-mesh-create.sh) | Number of clusters, mandatory, integer | "reset", string, optional |
   
@@ -103,7 +104,7 @@ Example usage to create a data mesh with 8 clusters and remove any existing clus
 
 ### Managing the data mesh cluster
 
-| Command | Argument 1 | Argument 2 | Argument 3 |
+| Script | Argument 1 | Argument 2 | Argument 3 |
 | ------------- | ------------- | ------------- | ------------- |
 | [elastic-mesh-manage.sh](elastic-mesh-manage.sh) | Docker compose command, mandatory, string, e.g. up/down/restart | Start cluster, mandatory, integer | Number of clusters to apply command to, optional, integer, defaults to 1 |
   

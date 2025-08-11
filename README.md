@@ -93,10 +93,16 @@ git clone https://github.com/Bairdy999/elastic-data-mesh.git
 cd /opt/elastic-data-mesh
 ```
 
-### elastic-mesh-create.sh
+### Creating a data mesh cluster
 | Command | Argument 1 | Argument 2 |
 | ------------- | ------------- | ------------- |
-| elastic-mesh-create.sh | Number of clusters, passed as an integer | <reset> |
-Example usage: ``
+| elastic-mesh-create.sh | Number of clusters, mandatory passed as an integer | <reset>, optional |
+Example usage to create 8 clusters in the data mesh and remove any existing clusters: `sudo ./elastic-mesh-create.sh 8 reset`
 
-### elastic-mesh-manage.sh
+### Managing the data mesh cluster
+
+| Command | Argument 1 | Argument 2 | Argument 3 |
+| ------------- | ------------- | ------------- | ------------- |
+| elastic-mesh-manage.sh | Docker compose command, e.g. up/down/restart, mandatory | Start cluster for command, mandatory | Number of clusters to apply command to, optional, defaults to 1 |
+Example usage to restart 8 clusters in the data mesh starting from cluster 1: `sudo ./elastic-mesh-manage.sh restart 1 8`
+

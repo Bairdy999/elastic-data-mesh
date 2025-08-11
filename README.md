@@ -101,7 +101,8 @@ cd /opt/elastic-data-mesh
 - Things such as the Elasticsearch stack version and Docker container memory limits aren't parameterised (yet) but exported as environment variables to Docker Compose prior to running `envsubst`. Change these directly in the script for now if need be
 - Running in a VM on Proxmox, exporting environment variable `ELASTIC_MEM_LIMIT="2g"` to the container as `mem_limit: ${ELASTIC_MEM_LIMIT}` worked successfully with 8 clusters. On an AWS EC2 instance with 8 clusters this needed to be increased to `ELASTIC_MEM_LIMIT="3g"`otehrwise containers would exit with out-of-memory errors. It is assumed this is a timing issue related to AWS EC2 (YMMV - your mileage may vary!)
 - For some reason (and it appears to be a known issue), if environment variables AND an `elasticsearch.yml` file are presented to Elasticsearch in a container, any host binding (e.g. for network, http, transport, etc) must be added for "0.0.0.0" otherwise network connections don't work as expected (this can easily be reproduced by removing the relevant config items for "0.0.0.0" binding).
-  
+
+#### Running the script
 | Script | Argument 1 | Argument 2 |
 | ------------- | ------------- | ------------- |
 | [elastic-mesh-create.sh](elastic-mesh-create.sh) | Number of clusters, mandatory, integer | "reset", string, optional |
@@ -110,7 +111,10 @@ Example usage to create a data mesh with 8 clusters and remove any existing clus
 `sudo /opt/elastic-mesh-create.sh 8 reset`
 
 ### Managing the data mesh cluster
+#### Items of note 
+- TBC
 
+#### Running the script
 | Script | Argument 1 | Argument 2 | Argument 3 |
 | ------------- | ------------- | ------------- | ------------- |
 | [elastic-mesh-manage.sh](elastic-mesh-manage.sh) | Docker compose command, mandatory, string, e.g. up/down/restart | Start cluster, mandatory, integer | Number of clusters to apply command to, optional, integer, defaults to 1 |

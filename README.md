@@ -50,6 +50,7 @@ When `elastic-mesh-create.sh` is run it carries out the following actions (assum
   - Adds the container IP addresses to `/etc/hosts` for each container
   - Configures each cluster as a remote cluster for every other cluster in the data mesh
   - Generates a cross-cluster API key for each cluster and writes it to a local file in the cluster
+  - Configures Kibana `server.basePath: "/clusterxx"` for external access to Kibana
 
 ### Network Details
 As mentioned above, the installer adds relevant container IP addresses to the local `/etc/hosts` file for each cluster created. Along with the port mappings, these have a consistent format as follows:

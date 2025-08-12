@@ -100,7 +100,8 @@ cd /opt/elastic-data-mesh
 - When `envsubst` is used, Docker compose can't/doesn't read from a local .env file if it exists (normally it does if ran directly). Any environment variables intended to be used by containers therefore need to be exported priot to running Docker Compose in this manner
 - Things such as the Elasticsearch stack version and Docker container memory limits aren't parameterised (yet) but exported as environment variables to Docker Compose prior to running `envsubst`. Change these directly in the script for now if need be
 - Running in a VM on Proxmox, exporting environment variable `ELASTIC_MEM_LIMIT="2g"` to the container as `mem_limit: ${ELASTIC_MEM_LIMIT}` worked successfully with 8 clusters. On an AWS EC2 instance with 8 clusters this needed to be increased to `ELASTIC_MEM_LIMIT="3g"`otehrwise containers would exit with out-of-memory errors. It is assumed this is a timing issue related to AWS EC2 (YMMV - your mileage may vary!)
-- For some reason (and it appears to be a known issue), if environment variables AND an `elasticsearch.yml` file are presented to Elasticsearch in a container, any host binding (e.g. for network, http, transport, etc) must be added for "0.0.0.0" otherwise network connections don't work as expected (this can easily be reproduced by removing the relevant config items for "0.0.0.0" binding).
+- For some reason (and it appears to be a known issue), if environment variables AND an `elasticsearch.yml` file are presented to Elasticsearch in a container, any host binding (e.g. for network, http, transport, etc) must be added for "0.0.0.0" otherwise network connections don't work as expected (this can easily be reproduced by removing the relevant config items for "0.0.0.0" binding)
+- A cross-cluster-search API key is created for each cluster but not yet used (it needs to be copied to each other cluster in the data mesh and can be done manually)
 
 #### Running the script
 | Script | Argument 1 | Argument 2 |
@@ -121,4 +122,13 @@ Example usage to create a data mesh with 8 clusters and remove any existing clus
   
 Example usage to restart 8 clusters in the data mesh starting from cluster 1:  
 `sudo /opt/elastic-mesh-manage.sh restart 1 8`
+
+## Next Steps
+Once the data mesh is up and running, the next steps are suggested as follows:
+- Load some data into each cluster. The important requirement here is that the data is different in each cluster so that cross-cluster-search across the data mesh can be tested. See [Ingesting UK Police stop-and-search data into the data mesh](https://github.com/Bairdy999/elastic-police-uk-data-ingest) for an example of such data (or use any suitable data set)
+- Create local data views in each cluster for the data that's been loaded, e.g. named `local-data-set`
+- In at least one cluster in the data mesh, create a data view that includes the local data views from the other clusters, e.g
+  - Assuming each cluster is named clusterxx and has a local data view named `local-data-set`, then
+  - Create a mesh data view named `mesh-data-set` that has an index pattern of `cluster*:local-data-set` See [using data views with cross cluster search](https://www.elastic.co/docs/explore-analyze/find-and-organize/data-views#management-cross-cluster-search) for more information on this 
+
 

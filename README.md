@@ -29,7 +29,7 @@ The 'installer' consists of the following items:
 When `elastic-mesh-create.sh` is run it carries out the following actions (assuming all pre-requisites have been met, [see below](https://github.com/Bairdy999/elastic-data-mesh/blob/main/README.md#prerequisites---docker-vm)):
 - Optionally, resets the data mesh by removing any existing clusters (useful to rebuild from scratch or for testing)
 - Creates a Linux elastic user to assign file permissions to, and to run the Elastic containers (if it doesn't already exist)
-- Creates an external Docker network on the VM (for inter-container networking to avoid creating a large number of routes between each cluster network)
+- Creates an external Docker network (`data-mesh-network`) on the VM (for inter-container networking to avoid creating a large number of routes between each cluster network)
 > [!CAUTION]
 > Common passwords and encryption key are used for all clusters here as it's intended as a PoC, for simplicity and to make testing easier. **Disclaimer: DO NOT** use common/shared credentials such as this in Production environments, do so at your own risk!
 - Carries out each of the following for use by all clusters (i.e. the same elastic user password for each cluster)
@@ -50,6 +50,20 @@ When `elastic-mesh-create.sh` is run it carries out the following actions (assum
   - Configures each cluster as a remote cluster for every other cluster in the data mesh
   - Generates a cross-cluster API key for each cluster and writes it to a local file in the cluster
 
+### Network Details
+As mentioned above, the installer adds relevant container IP addresses to the local `/etc/hosts` file for each cluster created. These have a consistent format as follows:
+  
+| Cluster | Container | Hosts entry |
+| -- | -- | -- |
+| cluster01 | Elasticsearch | cluster01-elastic |
+| cluster01 | Kibana | cluster01-kibana |
+| cluster02 | Elasticsearch | cluster02-elastic |
+| cluster03 | Kibana | cluster02-kibana |
+| clusterxx | Elasticsearch | clusterxx-elastic |
+| clusterxx | Kibana | clusterxx-kibana |
+  
+These hosts entries can 
+  
 ## Prerequisites - Docker VM
 > [!NOTE]
 > Ubuntu 24.04 LTS is used here to run Docker and the Elasticsearch data mesh clusters but feel free to use a Linux flavour of your choice that supports Docker

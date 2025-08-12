@@ -151,5 +151,6 @@ Once the data mesh is up and running, the next steps are suggested as follows:
   - Create a mesh data view named `mesh-data-set` that has an index pattern of `cluster*:local-data-set` See [using data views with cross cluster search](https://www.elastic.co/docs/explore-analyze/find-and-organize/data-views#management-cross-cluster-search) for more information on this
   - Use data view `mesh-data-set` anywhere a data view is normally used to explore searching across all clusters in the data mesh against the ingested data
 - Configure the generated API key for use so that role-based access to data in the cluster is enforced. The API keys have a default index pattern of `mesh*` configured to restrict search to that pattern
+- Setup external access to each cluster in the data mesh to allow access to Kibana and to ingest data into each cluster. There are several mechanisms for doing this, one example using NGINX can be found at [AWS implementation](Implementations/AWS)
 
 

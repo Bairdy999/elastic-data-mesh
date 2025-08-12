@@ -62,9 +62,9 @@ Create a VM with the following specs:
 - Second volume: 200GB min, max as required (provisioned/mounted as `/mnt/data` for consistency, can be changed as required)
 
 ## Required software
-Install British English dictionary words for passphrase generation:
+Install a suitable dictionary words package for passphrase generation, e.g. to install British English:
 > [!NOTE]  
-> Other languages are available for installation in `/usr/share/dict`, e.g. [wfrench](https://pkgs.org/download/wfrench), [wspanish](https://pkgs.org/download/wspanish) etc
+> Other variants or languages are available for installation in `/usr/share/dict`, e.g. [US English](), [French](https://pkgs.org/download/wfrench), [Spanish](https://pkgs.org/download/wspanish) etc
 ```
 sudo apt-get install wbritish # Installs to /usr/share/dict
 ```

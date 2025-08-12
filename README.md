@@ -128,6 +128,10 @@ cd /opt/elastic-data-mesh
 Example usage to create a data mesh with 8 clusters and remove any existing clusters:  
 `sudo /opt/elastic-mesh-create.sh 8 reset`
 
+The following screenshot shows the folders that are created for the data mesh:
+
+  <img width="253" height="304" alt="image" src="https://github.com/user-attachments/assets/5ef3de44-c256-4f69-adb6-a1ec92b6570b" />
+
 Once the script has completed and all containers are running, logging into Kibana for cluster01 and navigating to Stack Management->Remote Clusters should look something like this:
 
   

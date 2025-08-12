@@ -101,7 +101,7 @@ cd /opt/elastic-data-mesh
 - Things such as the Elasticsearch stack version and Docker container memory limits aren't parameterised (yet) but exported as environment variables to Docker Compose prior to running `envsubst`. Change these directly in the script for now if need be
 - Running in a VM on Proxmox, exporting environment variable `ELASTIC_MEM_LIMIT="2g"` to the container as `mem_limit: ${ELASTIC_MEM_LIMIT}` worked successfully with 8 clusters. On an AWS EC2 instance with 8 clusters this needed to be increased to `ELASTIC_MEM_LIMIT="3g"`otehrwise containers would exit with out-of-memory errors. It is assumed this is a timing issue related to AWS EC2 (YMMV - your mileage may vary!)
 - For some reason (and it appears to be a known issue), if environment variables AND an `elasticsearch.yml` file are presented to Elasticsearch in a container, any host binding (e.g. for network, http, transport, etc) must be added for "0.0.0.0" otherwise network connections don't work as expected (this can easily be reproduced by removing the relevant config items for "0.0.0.0" binding)
-- A cross-cluster-search API key is created for each cluster but not yet used (it needs to be copied to each other cluster in the data mesh and can be done manually)
+- A cross-cluster-search API key is created for each cluster but not yet used (it needs to be copied to each other cluster in the data mesh and this can be done manually)
 
 #### Running the script
 | Script | Argument 1 | Argument 2 |
@@ -130,7 +130,7 @@ Once the data mesh is up and running, the next steps are suggested as follows:
 - In at least one cluster in the data mesh, create a data view that includes the local data views from the other clusters, e.g
   - Assuming each cluster is named `cluster01`, `cluster02`, `cluster03`, etc and has a local data view named `local-data-set`, then
   - Create a mesh data view named `mesh-data-set` that has an index pattern of `cluster*:local-data-set` See [using data views with cross cluster search](https://www.elastic.co/docs/explore-analyze/find-and-organize/data-views#management-cross-cluster-search) for more information on this
-  - Use data view `mesh-data-set` anywhere a data view is normally used to explore searching across all clsuters in the data mesh against the ingested data
+  - Use data view `mesh-data-set` anywhere a data view is normally used to explore searching across all clusters in the data mesh against the ingested data
 - Configure the generated API key for use so that role-based access to data in the cluster is enforced. The API keys have a default index pattern of `mesh*` configured to restrict search to that pattern
 
 

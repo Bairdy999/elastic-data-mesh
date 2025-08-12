@@ -58,9 +58,9 @@ As mentioned above, the installer adds relevant container IP addresses to the lo
 | -- | -- | -- | -- |
 | cluster01 | Elasticsearch | cluster01-elastic | 9201->9200<br>9301->9300<br>9401->9443 |
 | cluster01 | Kibana | cluster01-kibana | 5601->5601 |
-| cluster02 | Elasticsearch | cluster02-elastic | 9202->9200 |
+| cluster02 | Elasticsearch | cluster02-elastic | 9202->9200<br>9302->9300<br>9402->9443 |
 | cluster03 | Kibana | cluster02-kibana | 5602->5601 |
-| clusterxx | Elasticsearch | clusterxx-elastic | 92xx->9200 |
+| clusterxx | Elasticsearch | clusterxx-elastic | 92xx->9200<br>93xx->9300<br>94xx->9443 |
 | clusterxx | Kibana | clusterxx-kibana | 56xx->5601 |
   
 These hosts entries can subsequently be used to access relevant ports in each container, or to route traffic to the containers via a reverse proxy. Note that other ports, e.g. 9300, 9443 are mapped in the same manner.

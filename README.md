@@ -11,7 +11,7 @@ Elastic have proposed using [Elasticsearch as the core component of a data mesh 
 > [!NOTE]
 > This project is primarily aimed at self-managed and/or air-gapped environments. Integration with Elastic Cloud Hosting or Serverless may be added in future iterations, but the concepts can be equally applied
   
-To that end, this project aims to allow a Proof-of-Concept data mesh to be quickly created. It uses Docker Compose to easily create an arbitrary number of single-node Elasticsearch clusters running as Docker containers, each configured as a remote cluster for the others, along with a corresponding Kibana instance. The diagram below illustrates this concept (**Note:** the number of containers/clusters is only limited by the resources available to a single Docker VM. It is left as an exercise to the reader to expand this project to run across multiple Docker VMs).
+To that end, this project aims to allow a technical Proof-of-Concept data mesh to be quickly created, that could form the basis for a full data mesh framework. It uses Docker Compose to easily create an arbitrary number of single-node Elasticsearch clusters running as Docker containers, each configured as a remote cluster for the others, along with a corresponding Kibana instance. The diagram below illustrates this concept (**Note:** the number of containers/clusters is only limited by the resources available to a single Docker VM. It is left as an exercise to the reader to expand this project to run across multiple Docker VMs).
 
 <img width="660" height="646" alt="image" src="https://github.com/user-attachments/assets/6642bf8e-3ce3-417f-87bc-27e7cd828645" />
 

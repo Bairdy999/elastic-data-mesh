@@ -129,6 +129,8 @@ Once the data mesh is up and running, the next steps are suggested as follows:
 - Create local data views in each cluster for the data that's been loaded, e.g. named `local-data-set`
 - In at least one cluster in the data mesh, create a data view that includes the local data views from the other clusters, e.g
   - Assuming each cluster is named clusterxx and has a local data view named `local-data-set`, then
-  - Create a mesh data view named `mesh-data-set` that has an index pattern of `cluster*:local-data-set` See [using data views with cross cluster search](https://www.elastic.co/docs/explore-analyze/find-and-organize/data-views#management-cross-cluster-search) for more information on this 
+  - Create a mesh data view named `mesh-data-set` that has an index pattern of `cluster*:local-data-set` See [using data views with cross cluster search](https://www.elastic.co/docs/explore-analyze/find-and-organize/data-views#management-cross-cluster-search) for more information on this
+  - Use data view `mesh-data-set` anywhere a data view is normally used to explore searching across all clsuters in the data mesh against the ingested data
+- Configure the generated API key for use so that role-based access to data in the cluster is enforced. The API keys have a default index pattern of `mesh*` configured to restrict search to that pattern
 
 

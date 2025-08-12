@@ -77,11 +77,12 @@ Create a VM with the following specs:
 
 ## Required software
 Install a suitable dictionary words package for passphrase generation, e.g. to install British English:
-> [!NOTE]  
-> Other variants or languages are available for installation in `/usr/share/dict`, e.g. [US English](https://pkgs.org/download/wamerican), [French](https://pkgs.org/download/wfrench), [Spanish](https://pkgs.org/download/wspanish) etc
 ```
 sudo apt-get install wbritish # Installs to /usr/share/dict
 ```
+> [!NOTE]  
+> Other variants or languages are available for installation in `/usr/share/dict`, e.g. [US English](https://pkgs.org/download/wamerican), [French](https://pkgs.org/download/wfrench), [Spanish](https://pkgs.org/download/wspanish) etc
+
 Install Docker:
 ```
 sudo apt install curl apt-transport-https ca-certificates software-properties-common

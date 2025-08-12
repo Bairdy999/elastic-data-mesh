@@ -46,23 +46,24 @@ When `elastic-mesh-create.sh` is run it carries out the following actions (assum
   - Generates an `elasticsearch.yml` config file containing relevant networking and security settings
   - Generates a `kibana.yml` config file containing relevant networking and security settings (this includes a banner heading to identify the cluster when logged into Kibana; this avoids confusion and/or error!)
   - Runs Docker Compose to create Elasticsearch and Kibana containers for each cluster, using the already generated configuration and artefacts (e.g. CA certs)
+  - Maps external ports to the relevant internal ports based on the cluster number
   - Adds the container IP addresses to `/etc/hosts` for each container
   - Configures each cluster as a remote cluster for every other cluster in the data mesh
   - Generates a cross-cluster API key for each cluster and writes it to a local file in the cluster
 
 ### Network Details
-As mentioned above, the installer adds relevant container IP addresses to the local `/etc/hosts` file for each cluster created. These have a consistent format as follows:
+As mentioned above, the installer adds relevant container IP addresses to the local `/etc/hosts` file for each cluster created. Along with the port mappings, these have a consistent format as follows:
   
-| Cluster | Container | Hosts entry name |
-| -- | -- | -- |
-| cluster01 | Elasticsearch | cluster01-elastic |
-| cluster01 | Kibana | cluster01-kibana |
-| cluster02 | Elasticsearch | cluster02-elastic |
-| cluster03 | Kibana | cluster02-kibana |
-| clusterxx | Elasticsearch | clusterxx-elastic |
-| clusterxx | Kibana | clusterxx-kibana |
+| Cluster | Container | Hosts entry name | Port mappings | 
+| -- | -- | -- | -- |
+| cluster01 | Elasticsearch | cluster01-elastic | 9201->9200 |
+| cluster01 | Kibana | cluster01-kibana | 5601->5601 |
+| cluster02 | Elasticsearch | cluster02-elastic | 9202->9200 |
+| cluster03 | Kibana | cluster02-kibana | 5602->5601 |
+| clusterxx | Elasticsearch | clusterxx-elastic | 92xx->9200 |
+| clusterxx | Kibana | clusterxx-kibana | 56xx->5601 |
   
-These hosts entries can subsequently be used to access relevant ports in each container, or to route traffic to the containers via a reverse proxy
+These hosts entries can subsequently be used to access relevant ports in each container, or to route traffic to the containers via a reverse proxy. Note that other ports, e.g. 9300, 9443 are mapped in the same manner.
   
 ## Prerequisites - Docker VM
 > [!NOTE]

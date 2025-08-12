@@ -3,7 +3,7 @@
 Elastic have proposed using [Elasticsearch as the core component of a data mesh framework](https://www.elastic.co/blog/data-mesh-public-sector), enabling an approach that unites the four pillars of a data mesh into a process to manage, and comprehensively search, distributed data.  
 
 > [!TIP]
-> For example implentations/usage of the Data Mesh PoC see:
+> For example implementations/usage of the Data Mesh PoC see:
 > - [AWS implementation](Implementations/AWS)
 > - [Ingesting UK Police stop-and-search data into the data mesh](https://github.com/Bairdy999/elastic-police-uk-data-ingest)
 > - Coming soon - Police UK data mesh app based on NextJS/Elastic MCP and RAG demonstrators

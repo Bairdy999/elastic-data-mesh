@@ -62,7 +62,7 @@ As mentioned above, the installer adds relevant container IP addresses to the lo
 | clusterxx | Elasticsearch | clusterxx-elastic |
 | clusterxx | Kibana | clusterxx-kibana |
   
-These hosts entries can 
+These hosts entries can subsequently be used to access relevant ports in each container, or to route traffic to the containers via a reverse proxy
   
 ## Prerequisites - Docker VM
 > [!NOTE]

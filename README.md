@@ -53,7 +53,7 @@ When `elastic-mesh-create.sh` is run it carries out the following actions (assum
 ### Network Details
 As mentioned above, the installer adds relevant container IP addresses to the local `/etc/hosts` file for each cluster created. These have a consistent format as follows:
   
-| Cluster | Container | Hosts entry |
+| Cluster | Container | Hosts entry name |
 | -- | -- | -- |
 | cluster01 | Elasticsearch | cluster01-elastic |
 | cluster01 | Kibana | cluster01-kibana |

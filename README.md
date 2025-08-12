@@ -53,8 +53,7 @@ When `elastic-mesh-create.sh` is run it carries out the following actions (assum
 
 ### Network Details
 As mentioned above, the installer adds relevant container IP addresses to the local `/etc/hosts` file for each cluster created. Along with the port mappings, these have a consistent format as follows:
-
-<div "align=centre">
+  
 | Cluster | Container | Hosts entry name | Port mappings | 
 | -- | -- | -- | -- |
 | cluster01 | Elasticsearch | cluster01-elastic | 9201->9200<br>9301->9300<br>9401->9443 |
@@ -63,7 +62,6 @@ As mentioned above, the installer adds relevant container IP addresses to the lo
 | cluster02 | Kibana | cluster02-kibana | 5602->5601 |
 | clusterxx | Elasticsearch | clusterxx-elastic | 92xx->9200<br>93xx->9300<br>94xx->9443 |
 | clusterxx | Kibana | clusterxx-kibana | 56xx->5601 |
-</div>
   
 These hosts entries and port mappings can subsequently be used to access relevant services in each container, or to route traffic to the containers via a reverse proxy. Note that within the Docker VM the standard ports can be accessed directly using the hosts entries, e.g. `https://cluster01-elastic:9200`, `https://cluster02-elastic:9200`, etc.
   

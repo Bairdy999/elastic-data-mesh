@@ -63,7 +63,7 @@ As mentioned above, the installer adds relevant container IP addresses to the lo
 | clusterxx | Elasticsearch | clusterxx-elastic | 92xx->9200<br>93xx->9300<br>94xx->9443 |
 | clusterxx | Kibana | clusterxx-kibana | 56xx->5601 |
   
-These hosts entries can subsequently be used to access relevant ports in each container, or to route traffic to the containers via a reverse proxy. Note that within the Docker VM the standard ports can be accessed directly using the hosts entries, e.g. `https://cluster01-elastic:9200`, `https://cluster02-elastic:9200`, etc.
+These hosts entries and port mappings can subsequently be used to access relevant services in each container, or to route traffic to the containers via a reverse proxy. Note that within the Docker VM the standard ports can be accessed directly using the hosts entries, e.g. `https://cluster01-elastic:9200`, `https://cluster02-elastic:9200`, etc.
   
 ## Prerequisites - Docker VM
 > [!NOTE]

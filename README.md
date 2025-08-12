@@ -134,7 +134,7 @@ The following screenshot shows the folders that are created for the data mesh:
 
 
   
-  
+## 
 Once the script has completed and all containers are running, logging into Kibana for cluster01 and navigating to Stack Management->Remote Clusters should look something like this:  
 
   

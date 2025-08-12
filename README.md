@@ -56,7 +56,7 @@ As mentioned above, the installer adds relevant container IP addresses to the lo
   
 | Cluster | Container | Hosts entry name | Port mappings | 
 | -- | -- | -- | -- |
-| cluster01 | Elasticsearch | cluster01-elastic | 9201->9200 |
+| cluster01 | Elasticsearch | cluster01-elastic | 9201->9200<br>9301->9300<br>9401->9443 |
 | cluster01 | Kibana | cluster01-kibana | 5601->5601 |
 | cluster02 | Elasticsearch | cluster02-elastic | 9202->9200 |
 | cluster03 | Kibana | cluster02-kibana | 5602->5601 |

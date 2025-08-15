@@ -9,7 +9,8 @@ Elastic have proposed using [Elasticsearch as the core component of a data mesh 
 > - Coming soon - Police UK data mesh app based on NextJS/Elastic MCP and RAG demonstrators
   
 > [!NOTE]
-> This project is primarily aimed at self-managed and/or air-gapped environments. Integration with Elastic Cloud Hosting or Serverless may be added in future iterations, but the concepts can be equally applied
+> This project is primarily aimed at self-managed and/or air-gapped environments. Integration with Elastic Cloud Hosting or Elastic Serverless may be added in future iterations, but the concepts can be equally applied.
+> *Note also* that this project is not endorsed by Elastic in any shape or form, nor does it form part of any Elastic data mesh framework or strategy (published or otherwise). It i
   
 To that end, this project aims to allow a technical Proof-of-Concept data mesh to be quickly created, that could form the basis for a full data mesh framework. It uses Docker Compose to easily create an arbitrary number of single-node Elasticsearch clusters running as Docker containers, each configured as a remote cluster for the others, along with a corresponding Kibana instance. The diagram below illustrates this concept (**Note:** the number of containers/clusters is only limited by the resources available to a single Docker VM. It is left as an exercise to the reader to expand this project to run across multiple Docker VMs).
 

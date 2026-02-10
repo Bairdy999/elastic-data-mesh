@@ -1,0 +1,18 @@
+{
+  "name": "mesh-data-load",
+  "version": "1.0.0",
+  "main": "mesh-data-load.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@elastic/elasticsearch": "^9.3.0",
+    "csv-parse": "^6.1.0",
+    "dotenv": "^17.2.4",
+    "glob": "^13.0.1"
+  }
+}

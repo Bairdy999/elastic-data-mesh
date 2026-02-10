@@ -1,0 +1,452 @@
+[
+	{
+		"PFA24CD": "E23000001",
+		"PFA24NM": "Metropolitan Police",
+		"ObjectId": "1",
+		"ForceName": "Metropolitan Police Service",
+		"ForceCode": "01",
+		"CrimeFileName": "metropolitan",
+		"ForceIdentifier": "MT"
+	},
+	{
+		"PFA24CD": "E23000002",
+		"PFA24NM": "Cumbria",
+		"ObjectId": "2",
+		"ForceName": "Cumbria Constabulary",
+		"ForceCode": "03",
+		"CrimeFileName": "cumbria",
+		"ForceIdentifier": "CM"
+	},
+	{
+		"PFA24CD": "E23000003",
+		"PFA24NM": "Lancashire",
+		"ObjectId": "3",
+		"ForceName": "Lancashire Constabulary",
+		"ForceCode": "04",
+		"CrimeFileName": "lancashire",
+		"ForceIdentifier": "LA"
+	},
+	{
+		"PFA24CD": "E23000004",
+		"PFA24NM": "Merseyside",
+		"ObjectId": "4",
+		"ForceName": "Merseyside Police",
+		"ForceCode": "05",
+		"CrimeFileName": "merseyside",
+		"ForceIdentifier": "MY"
+	},
+	{
+		"PFA24CD": "E23000005",
+		"PFA24NM": "Greater Manchester",
+		"ObjectId": "5",
+		"ForceName": "Greater Manchester Police",
+		"ForceCode": "06",
+		"CrimeFileName": "greater-manchester",
+		"ForceIdentifier": "GM"
+	},
+	{
+		"PFA24CD": "E23000006",
+		"PFA24NM": "Cheshire",
+		"ObjectId": "6",
+		"ForceName": "Cheshire Constabulary",
+		"ForceCode": "07",
+		"CrimeFileName": "cheshire",
+		"ForceIdentifier": "CH"
+	},
+	{
+		"PFA24CD": "E23000007",
+		"PFA24NM": "Northumbria",
+		"ObjectId": "7",
+		"ForceName": "Northumbria Police",
+		"ForceCode": "10",
+		"CrimeFileName": "northumbria",
+		"ForceIdentifier": "NU"
+	},
+	{
+		"PFA24CD": "E23000008",
+		"PFA24NM": "Durham",
+		"ObjectId": "8",
+		"ForceName": "Durham Constabulary",
+		"ForceCode": "11",
+		"CrimeFileName": "durham",
+		"ForceIdentifier": "DM"
+	},
+	{
+		"PFA24CD": "E23000009",
+		"PFA24NM": "North Yorkshire",
+		"ObjectId": "9",
+		"ForceName": "North Yorkshire Police",
+		"ForceCode": "12",
+		"CrimeFileName": "north-yorkshire",
+		"ForceIdentifier": "NY"
+	},
+	{
+		"PFA24CD": "E23000010",
+		"PFA24NM": "West Yorkshire",
+		"ObjectId": "10",
+		"ForceName": "West Yorkshire Police",
+		"ForceCode": "13",
+		"CrimeFileName": "west-yorkshire",
+		"ForceIdentifier": "WY"
+	},
+	{
+		"PFA24CD": "E23000011",
+		"PFA24NM": "South Yorkshire",
+		"ObjectId": "11",
+		"ForceName": "South Yorkshire Police",
+		"ForceCode": "14",
+		"CrimeFileName": "south-yorkshire",
+		"ForceIdentifier": "SY"
+	},
+	{
+		"PFA24CD": "E23000012",
+		"PFA24NM": "Humberside",
+		"ObjectId": "12",
+		"ForceName": "Humberside Police",
+		"ForceCode": "16",
+		"CrimeFileName": "humberside",
+		"ForceIdentifier": "HU"
+	},
+	{
+		"PFA24CD": "E23000013",
+		"PFA24NM": "Cleveland",
+		"ObjectId": "13",
+		"ForceName": "Cleveland Police",
+		"ForceCode": "17",
+		"CrimeFileName": "cleveland",
+		"ForceIdentifier": "CL"
+	},
+	{
+		"PFA24CD": "E23000014",
+		"PFA24NM": "West Midlands",
+		"ObjectId": "14",
+		"ForceName": "West Midlands Police",
+		"ForceCode": "20",
+		"CrimeFileName": "west-midlands",
+		"ForceIdentifier": "WD"
+	},
+	{
+		"PFA24CD": "E23000015",
+		"PFA24NM": "Staffordshire",
+		"ObjectId": "15",
+		"ForceName": "Staffordshire Police",
+		"ForceCode": "21",
+		"CrimeFileName": "staffordshire",
+		"ForceIdentifier": "SD"
+	},
+	{
+		"PFA24CD": "E23000016",
+		"PFA24NM": "West Mercia",
+		"ObjectId": "16",
+		"ForceName": "West Mercia Police",
+		"ForceCode": "22",
+		"CrimeFileName": "west-mercia",
+		"ForceIdentifier": "WE"
+	},
+	{
+		"PFA24CD": "E23000017",
+		"PFA24NM": "Warwickshire",
+		"ObjectId": "17",
+		"ForceName": "Warwickshire Police",
+		"ForceCode": "23",
+		"CrimeFileName": "warwickshire",
+		"ForceIdentifier": "WW"
+	},
+	{
+		"PFA24CD": "E23000018",
+		"PFA24NM": "Derbyshire",
+		"ObjectId": "18",
+		"ForceName": "Derbyshire Constabulary",
+		"ForceCode": "30",
+		"CrimeFileName": "derbyshire",
+		"ForceIdentifier": "DB"
+	},
+	{
+		"PFA24CD": "E23000019",
+		"PFA24NM": "Nottinghamshire",
+		"ObjectId": "19",
+		"ForceName": "Nottinghamshire Police",
+		"ForceCode": "31",
+		"CrimeFileName": "nottinghamshire",
+		"ForceIdentifier": "NG"
+	},
+	{
+		"PFA24CD": "E23000020",
+		"PFA24NM": "Lincolnshire",
+		"ObjectId": "20",
+		"ForceName": "Lincolnshire Police",
+		"ForceCode": "32",
+		"CrimeFileName": "lincolnshire",
+		"ForceIdentifier": "LI"
+	},
+	{
+		"PFA24CD": "E23000021",
+		"PFA24NM": "Leicestershire",
+		"ObjectId": "21",
+		"ForceName": "Leicestershire Police",
+		"ForceCode": "33",
+		"CrimeFileName": "leicestershire",
+		"ForceIdentifier": "LE"
+	},
+	{
+		"PFA24CD": "E23000022",
+		"PFA24NM": "Northamptonshire",
+		"ObjectId": "22",
+		"ForceName": "Northamptonshire Police",
+		"ForceCode": "34",
+		"CrimeFileName": "northamptonshire",
+		"ForceIdentifier": "NA"
+	},
+	{
+		"PFA24CD": "E23000023",
+		"PFA24NM": "Cambridgeshire",
+		"ObjectId": "23",
+		"ForceName": "Cambridgeshire Constabulary",
+		"ForceCode": "35",
+		"CrimeFileName": "cambridgeshire",
+		"ForceIdentifier": "CA"
+	},
+	{
+		"PFA24CD": "E23000024",
+		"PFA24NM": "Norfolk",
+		"ObjectId": "24",
+		"ForceName": "Norfolk Constabulary",
+		"ForceCode": "36",
+		"CrimeFileName": "norfolk",
+		"ForceIdentifier": "NR"
+	},
+	{
+		"PFA24CD": "E23000025",
+		"PFA24NM": "Suffolk",
+		"ObjectId": "25",
+		"ForceName": "Suffolk Constabulary",
+		"ForceCode": "37",
+		"CrimeFileName": "suffolk",
+		"ForceIdentifier": "SF"
+	},
+	{
+		"PFA24CD": "E23000026",
+		"PFA24NM": "Bedfordshire",
+		"ObjectId": "26",
+		"ForceName": "Bedfordshire Police",
+		"ForceCode": "40",
+		"CrimeFileName": "bedfordshire",
+		"ForceIdentifier": "BE"
+	},
+	{
+		"PFA24CD": "E23000027",
+		"PFA24NM": "Hertfordshire",
+		"ObjectId": "27",
+		"ForceName": "Hertfordshire Constabulary",
+		"ForceCode": "41",
+		"CrimeFileName": "hertfordshire",
+		"ForceIdentifier": "HE"
+	},
+	{
+		"PFA24CD": "E23000028",
+		"PFA24NM": "Essex",
+		"ObjectId": "28",
+		"ForceName": "Essex Police",
+		"ForceCode": "42",
+		"CrimeFileName": "essex",
+		"ForceIdentifier": "EX"
+	},
+	{
+		"PFA24CD": "E23000029",
+		"PFA24NM": "Thames Valley",
+		"ObjectId": "29",
+		"ForceName": "Thames Valley Police",
+		"ForceCode": "43",
+		"CrimeFileName": "thames-valley",
+		"ForceIdentifier": "TH"
+	},
+	{
+		"PFA24CD": "E23000030",
+		"PFA24NM": "Hampshire",
+		"ObjectId": "30",
+		"ForceName": "Hampshire Constabulary",
+		"ForceCode": "44",
+		"CrimeFileName": "hampshire",
+		"ForceIdentifier": "HA"
+	},
+	{
+		"PFA24CD": "E23000031",
+		"PFA24NM": "Surrey",
+		"ObjectId": "31",
+		"ForceName": "Surrey Police",
+		"ForceCode": "45",
+		"CrimeFileName": "surrey",
+		"ForceIdentifier": "SR"
+	},
+	{
+		"PFA24CD": "E23000032",
+		"PFA24NM": "Kent",
+		"ObjectId": "32",
+		"ForceName": "Kent Police",
+		"ForceCode": "46",
+		"CrimeFileName": "kent",
+		"ForceIdentifier": "KE"
+	},
+	{
+		"PFA24CD": "E23000033",
+		"PFA24NM": "Sussex",
+		"ObjectId": "33",
+		"ForceName": "Sussex Police",
+		"ForceCode": "47",
+		"CrimeFileName": "sussex",
+		"ForceIdentifier": "SX"
+	},
+	{
+		"PFA24CD": "E23000034",
+		"PFA24NM": "London, City of",
+		"ObjectId": "34",
+		"ForceName": "City of London Police",
+		"ForceCode": "48",
+		"CrimeFileName": "city-of-london",
+		"ForceIdentifier": "CY"
+	},
+	{
+		"PFA24CD": "E23000035",
+		"PFA24NM": "Devon & Cornwall",
+		"ObjectId": "35",
+		"ForceName": "Devon and Cornwall Police",
+		"ForceCode": "50",
+		"CrimeFileName": "devon-and-cornwall",
+		"ForceIdentifier": "DN"
+	},
+	{
+		"PFA24CD": "E23000036",
+		"PFA24NM": "Avon and Somerset",
+		"ObjectId": "36",
+		"ForceName": "Avon and Somerset Police",
+		"ForceCode": "52",
+		"CrimeFileName": "avon-and-somerset",
+		"ForceIdentifier": "AV"
+	},
+	{
+		"PFA24CD": "E23000037",
+		"PFA24NM": "Gloucestershire",
+		"ObjectId": "37",
+		"ForceName": "Gloucestershire Constabulary",
+		"ForceCode": "53",
+		"CrimeFileName": "gloucestershire",
+		"ForceIdentifier": "GL"
+	},
+	{
+		"PFA24CD": "E23000038",
+		"PFA24NM": "Wiltshire",
+		"ObjectId": "38",
+		"ForceName": "Wiltshire Police",
+		"ForceCode": "54",
+		"CrimeFileName": "wiltshire",
+		"ForceIdentifier": "WI"
+	},
+	{
+		"PFA24CD": "E23000039",
+		"PFA24NM": "Dorset",
+		"ObjectId": "39",
+		"ForceName": "Dorset Police",
+		"ForceCode": "55",
+		"CrimeFileName": "dorset",
+		"ForceIdentifier": "DO"
+	},
+	{
+		"PFA24CD": "L99999999",
+		"PFA24NM": "Pseudo Channel Islands",
+		"ObjectId": "40",
+		"ForceName": "Pseudo Channel Islands",
+		"ForceCode": "xx",
+		"CrimeFileName": "channel-islands",
+		"ForceIdentifier": "CI"
+	},
+	{
+		"PFA24CD": "M99999999",
+		"PFA24NM": "Pseudo Isle of Man",
+		"ObjectId": "41",
+		"ForceName": "Isle of Man Constabulary",
+		"ForceCode": "97",
+		"CrimeFileName": "isle-of-man",
+		"ForceIdentifier": "IM"
+	},
+	{
+		"PFA24CD": "N23000001",
+		"PFA24NM": "Police Service of Northern Ireland",
+		"ObjectId": "42",
+		"ForceName": "Police Service of Northern Ireland",
+		"ForceCode": "98",
+		"CrimeFileName": "northern-ireland",
+		"ForceIdentifier": "NI"
+	},
+	{
+		"PFA24CD": "S23000009",
+		"PFA24NM": "Scotland",
+		"ObjectId": "43",
+		"ForceName": "Police Scotland",
+		"ForceCode": "96",
+		"CrimeFileName": "scotland",
+		"ForceIdentifier": "SO"
+	},
+	{
+		"PFA24CD": "W15000001",
+		"PFA24NM": "North Wales",
+		"ObjectId": "44",
+		"ForceName": "North Wales Police",
+		"ForceCode": "60",
+		"CrimeFileName": "north-wales",
+		"ForceIdentifier": "NW"
+	},
+	{
+		"PFA24CD": "W15000002",
+		"PFA24NM": "Gwent",
+		"ObjectId": "45",
+		"ForceName": "Gwent Police",
+		"ForceCode": "61",
+		"CrimeFileName": "gwent",
+		"ForceIdentifier": "GW"
+	},
+	{
+		"PFA24CD": "W15000003",
+		"PFA24NM": "South Wales",
+		"ObjectId": "46",
+		"ForceName": "South Wales Police",
+		"ForceCode": "62",
+		"CrimeFileName": "south-wales",
+		"ForceIdentifier": "SW"
+	},
+	{
+		"PFA24CD": "W15000004",
+		"PFA24NM": "Dyfed-Powys",
+		"ObjectId": "47",
+		"ForceName": "Dyfed-Powys Police",
+		"ForceCode": "63",
+		"CrimeFileName": "dyfed-powys",
+		"ForceIdentifier": "DP"
+	},
+	{
+		"PFA24CD": "B99999999",
+		"PFA24NM": "BTP",
+		"ObjectId": "48",
+		"ForceName": "British Transport Police",
+		"ForceCode": "93",
+		"CrimeFileName": "btp",
+		"ForceIdentifier": "BT"
+	},
+	{
+		"PFA24CD": "C99999998",
+		"PFA24NM": "Guernsey",
+		"ObjectId": "49",
+		"ForceName": "Guernsey Police",
+		"ForceCode": "56",
+		"CrimeFileName": "guernsey",
+		"ForceIdentifier": "GU"
+	},
+	{
+		"PFA24CD": "C99999999",
+		"PFA24NM": "Jersey",
+		"ObjectId": "50",
+		"ForceName": "Jersey Police",
+		"ForceCode": "57",
+		"CrimeFileName": "jersey",
+		"ForceIdentifier": "JY"
+	}
+]

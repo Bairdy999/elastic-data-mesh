@@ -197,6 +197,7 @@ for ((x=1; x<="$1"; x++)); do
 # And grab the latest IP addresses for the containers and add to /etc/hosts:
 #	declare elasticIP=$(docker exec cluster$instance-elastic hostname -I)
 #	declare kibanaIP=$(docker exec cluster$instance-kibana hostname -I)
+# From Elastic 9.x the base image uses RHEL9 but with no hostname command, so use docker inspect instead to get the container IP address:
 	declare elasticIP=$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" cluster$instance-elastic)
 	declare kibanaIP=$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" cluster$instance-kibana)
 	printf "\n$elasticIP cluster$instance-elastic\n" >> "/etc/hosts"

@@ -195,8 +195,10 @@ for ((x=1; x<="$1"; x++)); do
 	export instance=$instance && envsubst < /opt/elastic-data-mesh/docker-compose-mesh-node.yml | docker compose -p mesh-cluster$instance -f - up -d
 
 # And grab the latest IP addresses for the containers and add to /etc/hosts:
-	declare elasticIP=$(docker exec cluster$instance-elastic hostname -I)
-	declare kibanaIP=$(docker exec cluster$instance-kibana hostname -I)
+#	declare elasticIP=$(docker exec cluster$instance-elastic hostname -I)
+#	declare kibanaIP=$(docker exec cluster$instance-kibana hostname -I)
+	declare elasticIP=$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" cluster$instance-elastic)
+	declare kibanaIP=$(docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" cluster$instance-kibana)
 	printf "\n$elasticIP cluster$instance-elastic\n" >> "/etc/hosts"
 	printf "$kibanaIP cluster$instance-kibana\n" >> "/etc/hosts"
 #echo $elasticIP

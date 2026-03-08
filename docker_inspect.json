@@ -1,0 +1,414 @@
+[
+    {
+        "Id": "38a828341005cfaded2724f7ec80ef22a4f34c357249e7d47c3f5348e5b2b0db",
+        "Created": "2026-03-08T20:53:15.777201243Z",
+        "Path": "/bin/tini",
+        "Args": [
+            "--",
+            "/usr/local/bin/docker-entrypoint.sh",
+            "eswrapper"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 155162,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-03-08T20:53:38.444036674Z",
+            "FinishedAt": "0001-01-01T00:00:00Z",
+            "Health": {
+                "Status": "healthy",
+                "FailingStreak": 0,
+                "Log": [
+                    {
+                        "Start": "2026-03-08T21:11:35.493435066Z",
+                        "End": "2026-03-08T21:11:35.538527622Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-03-08T21:11:45.539507326Z",
+                        "End": "2026-03-08T21:11:45.583386178Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-03-08T21:11:55.584222944Z",
+                        "End": "2026-03-08T21:11:55.630431536Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-03-08T21:12:05.631205181Z",
+                        "End": "2026-03-08T21:12:05.686237197Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-03-08T21:12:15.687615127Z",
+                        "End": "2026-03-08T21:12:15.744543671Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    }
+                ]
+            }
+        },
+        "Image": "sha256:34eeb0c332f27a16d5e47462c4bdf33e4a90179eb643b4923c7f5b671e027ffe",
+        "ResolvConfPath": "/var/lib/docker/containers/38a828341005cfaded2724f7ec80ef22a4f34c357249e7d47c3f5348e5b2b0db/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/38a828341005cfaded2724f7ec80ef22a4f34c357249e7d47c3f5348e5b2b0db/hostname",
+        "HostsPath": "/var/lib/docker/containers/38a828341005cfaded2724f7ec80ef22a4f34c357249e7d47c3f5348e5b2b0db/hosts",
+        "LogPath": "/var/lib/docker/containers/38a828341005cfaded2724f7ec80ef22a4f34c357249e7d47c3f5348e5b2b0db/38a828341005cfaded2724f7ec80ef22a4f34c357249e7d47c3f5348e5b2b0db-json.log",
+        "Name": "/cluster01-elastic",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/mnt/data/mesh/cluster01/certs:/usr/share/elasticsearch/config/certs:rw",
+                "/mnt/data/mesh/cluster01/elastic:/usr/share/elasticsearch/data:rw",
+                "/mnt/data/mesh/cluster01/elastic/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "data-mesh-network",
+            "PortBindings": {
+                "9200/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "9201"
+                    }
+                ],
+                "9300/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "9301"
+                    }
+                ],
+                "9443/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "9401"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 3221225472,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 6442450944,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [
+                {
+                    "Name": "memlock",
+                    "Hard": -1,
+                    "Soft": -1
+                }
+            ],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "ID": "38a828341005cfaded2724f7ec80ef22a4f34c357249e7d47c3f5348e5b2b0db",
+                "LowerDir": "/var/lib/docker/overlay2/e3896d442da23d2d4bdaf188a57ec15df358e24c9e623e4e7ccd4300a55650b0-init/diff:/var/lib/docker/overlay2/72215dea25cce13ff6ace3dadf66eb893b6602eed1f075c762106cca5c3b181a/diff:/var/lib/docker/overlay2/7bbcd27f8df034254b37ef9b13e4be6f423a280c591b16d613e57b294369ed8b/diff:/var/lib/docker/overlay2/f14dfec50bd4fe904643ef80f2db2cc588f7dc70f67c2e7c43b3d096c7b1cde1/diff:/var/lib/docker/overlay2/a370e72a0634e07953f9ed56f460cef075771b0cb1d3204da4109cd2dde33efa/diff:/var/lib/docker/overlay2/818e2db8e88b8b3c3d476afb9b5666cf89008c80e979ca310a45953715132869/diff:/var/lib/docker/overlay2/2d33af26c8bd9838f3fbdc989291292715baf9d0d3de5593abb9ea561d24aebd/diff:/var/lib/docker/overlay2/e1176133be4e6c561fd90b53c460e303578d96e58d2c92fa27f9e40ed4a5d9ee/diff:/var/lib/docker/overlay2/89d9fbf51ce6797535c6a3f460c5c474750acc92d2981068ad2062157d0156a9/diff:/var/lib/docker/overlay2/4f104c35cac1c4ecd282f03e0bec37acfde95c268db856c6772260e852704060/diff:/var/lib/docker/overlay2/be13cc8934e2928cdf710ac5041bb5f1eea1430d2d61f0eef976f2709bb532e6/diff",
+                "MergedDir": "/var/lib/docker/overlay2/e3896d442da23d2d4bdaf188a57ec15df358e24c9e623e4e7ccd4300a55650b0/merged",
+                "UpperDir": "/var/lib/docker/overlay2/e3896d442da23d2d4bdaf188a57ec15df358e24c9e623e4e7ccd4300a55650b0/diff",
+                "WorkDir": "/var/lib/docker/overlay2/e3896d442da23d2d4bdaf188a57ec15df358e24c9e623e4e7ccd4300a55650b0/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/mnt/data/mesh/cluster01/certs",
+                "Destination": "/usr/share/elasticsearch/config/certs",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/mnt/data/mesh/cluster01/elastic",
+                "Destination": "/usr/share/elasticsearch/data",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/mnt/data/mesh/cluster01/elastic/elasticsearch.yml",
+                "Destination": "/usr/share/elasticsearch/config/elasticsearch.yml",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "38a828341005",
+            "Domainname": "",
+            "User": "110",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "ExposedPorts": {
+                "9200/tcp": {},
+                "9300/tcp": {},
+                "9443/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "xpack.security.transport.ssl.key=certs/cluster01-elastic/cluster01-elastic.key",
+                "transport.host=\"0.0.0.0\"",
+                "xpack.security.remote_cluster_server.ssl.enabled=true",
+                "xpack.security.remote_cluster_server.ssl.certificate=certs/cluster01-elastic/cluster01-elastic.crt",
+                "xpack.security.http.ssl.enabled=true",
+                "xpack.security.http.ssl.certificate=certs/cluster01-elastic/cluster01-elastic.crt",
+                "transport.port=9300",
+                "remote_cluster.port=9443",
+                "xpack.security.http.ssl.key=certs/cluster01-elastic/cluster01-elastic.key",
+                "bootstrap.memory_lock=true",
+                "xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt",
+                "http.port=9200",
+                "remote_cluster.host=\"0.0.0.0\"",
+                "xpack.security.transport.ssl.verification_mode=certificate",
+                "xpack.security.remote_cluster_server.ssl.verification_mode=certificate",
+                "ES_JAVA_OPTS=-Xms1g -Xmx1g",
+                "xpack.license.self_generated.type=trial",
+                "xpack.security.enabled=true",
+                "discovery.type=single-node",
+                "ELASTIC_PASSWORD=projector-tenfold-hydrolysis",
+                "xpack.security.transport.ssl.enabled=true",
+                "xpack.security.transport.ssl.certificate=certs/cluster01-elastic/cluster01-elastic.crt",
+                "cluster.name=mesh-cluster-01",
+                "xpack.security.remote_cluster_server.ssl.key=certs/cluster01-elastic/cluster01-elastic.key",
+                "node.name=cluster01-elastic",
+                "PATH=/usr/share/elasticsearch/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "container=oci",
+                "ELASTIC_CONTAINER=true",
+                "SHELL=/bin/bash"
+            ],
+            "Cmd": [
+                "eswrapper"
+            ],
+            "Healthcheck": {
+                "Test": [
+                    "CMD-SHELL",
+                    "curl -s --cacert config/certs/ca/ca.crt https://localhost:9200 | grep -q 'missing authentication credentials'"
+                ],
+                "Interval": 10000000000,
+                "Timeout": 10000000000,
+                "Retries": 20
+            },
+            "Image": "docker.elastic.co/elasticsearch/elasticsearch:9.3.1",
+            "Volumes": null,
+            "WorkingDir": "/usr/share/elasticsearch",
+            "Entrypoint": [
+                "/bin/tini",
+                "--",
+                "/usr/local/bin/docker-entrypoint.sh"
+            ],
+            "Labels": {
+                "architecture": "x86_64",
+                "build-date": "2026-02-17T16:42:34Z",
+                "co.elastic.logs/module": "elasticsearch",
+                "com.docker.compose.config-hash": "3c3bb1b0ca6149fa34d95fe9165c4d667ff12770eb6a77d9bf710a660a397774",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "setup01:service_healthy:false",
+                "com.docker.compose.image": "sha256:34eeb0c332f27a16d5e47462c4bdf33e4a90179eb643b4923c7f5b671e027ffe",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "mesh-cluster01",
+                "com.docker.compose.project.config_files": "-",
+                "com.docker.compose.project.working_dir": "/opt/elastic-data-mesh",
+                "com.docker.compose.replace": "cluster01-elastic",
+                "com.docker.compose.service": "cluster01-elastic",
+                "com.docker.compose.version": "2.39.1",
+                "com.redhat.component": "ubi9-minimal-container",
+                "com.redhat.license_terms": "https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI",
+                "cpe": "cpe:/a:redhat:enterprise_linux:9::appstream",
+                "description": "You know, for search.",
+                "distribution-scope": "public",
+                "io.buildah.version": "1.42.2",
+                "io.k8s.description": "The Universal Base Image Minimal is a stripped down image that uses microdnf as a package manager. This base image is freely redistributable, but Red Hat only supports Red Hat technologies through subscriptions for Red Hat products. This image is maintained by Red Hat and updated regularly.",
+                "io.k8s.display-name": "Red Hat Universal Base Image 9 Minimal",
+                "io.openshift.expose-services": "",
+                "io.openshift.tags": "minimal rhel9",
+                "maintainer": "infra@elastic.co",
+                "name": "Elasticsearch",
+                "org.label-schema.build-date": "2026-02-23T23:37:38.684779921Z",
+                "org.label-schema.license": "Elastic-License-2.0",
+                "org.label-schema.name": "Elasticsearch",
+                "org.label-schema.schema-version": "1.0",
+                "org.label-schema.url": "https://www.elastic.co/products/elasticsearch",
+                "org.label-schema.usage": "https://www.elastic.co/guide/en/elasticsearch/reference/index.html",
+                "org.label-schema.vcs-ref": "0dd66e52ba3aa076cf498264e46339dbb71f0269",
+                "org.label-schema.vcs-url": "https://github.com/elastic/elasticsearch",
+                "org.label-schema.vendor": "Elastic",
+                "org.label-schema.version": "9.3.1",
+                "org.opencontainers.image.created": "2026-02-23T23:37:38.684779921Z",
+                "org.opencontainers.image.documentation": "https://www.elastic.co/guide/en/elasticsearch/reference/index.html",
+                "org.opencontainers.image.licenses": "Elastic-License-2.0",
+                "org.opencontainers.image.revision": "0dd66e52ba3aa076cf498264e46339dbb71f0269",
+                "org.opencontainers.image.source": "https://github.com/elastic/elasticsearch",
+                "org.opencontainers.image.title": "Elasticsearch",
+                "org.opencontainers.image.url": "https://www.elastic.co/products/elasticsearch",
+                "org.opencontainers.image.vendor": "Elastic",
+                "org.opencontainers.image.version": "9.3.1",
+                "release": "1",
+                "summary": "Elasticsearch",
+                "url": "https://catalog.redhat.com/en/search?searchType=containers",
+                "vcs-ref": "0ced2bbee24d5463d4530756a57f8db895246c48",
+                "vcs-type": "git",
+                "vendor": "Elastic",
+                "version": "9.3.1"
+            }
+        },
+        "NetworkSettings": {
+            "SandboxID": "8d19e4cde9e8abb9fbcdb69c2896b80e93f774b51e400c47d33971b458c35545",
+            "SandboxKey": "/var/run/docker/netns/8d19e4cde9e8",
+            "Ports": {
+                "9200/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "9201"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "9201"
+                    }
+                ],
+                "9300/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "9301"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "9301"
+                    }
+                ],
+                "9443/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "9401"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "9401"
+                    }
+                ]
+            },
+            "Networks": {
+                "data-mesh-network": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "cluster01-elastic",
+                        "cluster01-elastic"
+                    ],
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "d700262cf489184b6d24e0f2029ba4ac4209ec6c8c1195dca620e421b875bbad",
+                    "EndpointID": "c056edc9f8c2a315207e4fe8b5e2546c1983f6f712b90d3e2ce3ba532a3b2f6d",
+                    "Gateway": "172.20.0.1",
+                    "IPAddress": "172.20.0.4",
+                    "MacAddress": "aa:46:d0:c3:34:2d",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "cluster01-elastic",
+                        "38a828341005"
+                    ]
+                }
+            }
+        }
+    }
+]

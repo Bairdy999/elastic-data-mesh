@@ -75,7 +75,7 @@ export KIBANA_MEM_LIMIT="2g"
 export KIBANA_PASSWORD=$kibanaPassword
 # Default encryption key as provided by Elastic is well-known so generate a new random key
 # export ENCRYPTION_KEY=c34d38b3a14956121ff2170e5030b471551370178f43e5626eec58b04a30fae2
-export STACK_VERSION=8.18.1
+export STACK_VERSION=9.3.1
 
 # Setup our base mount point (see /etc/fstab for mount point details, create/configure as needed for your environment):
 elasticBaseDir="/mnt/data/mesh/"

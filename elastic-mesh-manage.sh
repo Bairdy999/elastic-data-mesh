@@ -41,10 +41,22 @@ export KIBANA_MEM_LIMIT="2g"
 export KIBANA_PASSWORD=$kibanaPassword
 export STACK_VERSION=8.18.1
 
+# Clear out any old entries in /etc/hosts as container IP addresses can and will change across restarts:
+cp /etc/hosts /etc/hosts.bak
+sed -i '/cluster..-/d' /etc/hosts
+
 for ((x="$2"; x<="$clusterNum"; x++)); do
 # Cast the loop counter to a string with leading zero if needed:
 	declare instance=""
 	printf -v instance "%02d" $x;
 # Run envsubst to substitute the instance Id in the docker compose template file and pipe the result via stdin to docker compose with the relevant command:
 	export instance=$instance && envsubst < /opt/elastic-data-mesh/docker-compose-mesh-node.yml | docker compose -p mesh-cluster$instance -f - $cmd
+
+	if [[ "$1" == "up" || "$1" == "start" ]]; then
+# Grab the latest IP addresses for the containers and add to /etc/hosts:
+		declare elasticIP=$(docker exec cluster$instance-elastic hostname -I)
+		declare kibanaIP=$(docker exec cluster$instance-kibana hostname -I)
+		printf "\n$elasticIP cluster$instance-elastic\n" >> "/etc/hosts"
+		printf "$kibanaIP cluster$instance-kibana\n" >> "/etc/hosts"
+	fi
 done;

@@ -24,6 +24,7 @@ dotenv.config();
     let dataStartYear = process.env.POLICE_DATA_START_YEAR;
     let meshClusterSize = process.env.DATA_MESH_CLUSTER_SIZE;
     let dataType = process.env.POLICE_DATA_TYPE;
+    let startTime = new Date();
 
     const elsClient = new Client({
       node: elsEndpoint,
@@ -36,8 +37,8 @@ dotenv.config();
       }
     });
 
-//console.log(await elsClient.info());
-
+console.log("Starting load of " + dataType + " data at: " + startTime);
+//process.exit();
   let dataMonth = 1;
   let fileSuffix = dataType + ".csv";
 
@@ -150,6 +151,9 @@ console.log(JSON.stringify(result));
       }
     }
   };
+
+console.log("Started load of " + dataType + " data at: " + startTime);
+console.log("Finished load of " + dataType + " data at: " + new Date());
 
   }
   catch (error) {

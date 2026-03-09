@@ -4,7 +4,8 @@ return {
       original: "",
       source: "police-street-crime",
       originator: "",
-      pole_type: "event"
+      pole_type: "event",
+      synthetic: false
     },
     log: {
       file: {

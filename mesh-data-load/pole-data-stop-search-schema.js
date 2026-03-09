@@ -4,7 +4,8 @@ return {
       original: "",
       source: "police-stop-and-search",
       originator: "",
-      pole_type: "event"
+      pole_type: "event",
+      synthetic: false
     },
     log: {
       file: {

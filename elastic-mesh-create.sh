@@ -1,6 +1,11 @@
 #!/bin/bash
 # Usage: ./elastic-mesh-create.sh x <reset> (where x is the number of clusters to create via Docker Compose, optionally pass reset to remove all existing clusters)
 
+readarray -t env < <(grep -v '^#' .env)
+export "${env[@]}"
+echo $ELASTIC_LICENSE_FILE
+exit 0
+
 if [[ $# -eq 0 ]] ; then
     echo './elastic-mesh-create.sh x <reset> (where x is the number of clusters to create via Docker Compose, optionally pass reset to remove all existing clusters)'
     exit 0

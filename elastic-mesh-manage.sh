@@ -1,6 +1,11 @@
 #!/bin/bash
 # Usage: ./elastic-mesh-manage.sh cmd x (where cmd is the docker compose command, e.g. up, down, restart, x is the cluster number, e.g. 01, y is the optional end cluster, e.g. 08 will run the command against clusters 01-08 )
 
+readarray -t env < <(grep -v '^#' .env)
+export "${env[@]}"
+echo $ELASTIC_LICENSE_FILE
+exit 0
+
 if [[ "$#" -ne 2 && "$#" -ne 3 ]]; then
     echo 'Usage: ./elastic-mesh-manage.sh cmd x (where cmd is the docker compose command, e.g. up, down, restart, x is the cluster number, e.g. 01, y is the end of cluster from the start cluster, e.g. 08 will run the command against clusters 01-08 )'
     exit 0

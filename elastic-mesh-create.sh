@@ -195,7 +195,7 @@ for ((x=1; x<="$1"; x++)); do
 
 # Create relevant config params in kibana.yml (note that without the server.host setting Kibana will fail to bind correctly to its ports):
 	printf 'server.host: "0.0.0.0"\n' > $kibanaYmlFile
-	printf 'server.basePath: "/cluster%s"\n' "$instance" >> $kibanaYmlFile
+	printf 'server.basePath: "/cluster%s/kibana"\n' "$instance" >> $kibanaYmlFile
 	printf "server.rewriteBasePath: true\n" >> $kibanaYmlFile
 	printf "xpack.banners.placement: top\n" >> $kibanaYmlFile
 	printf 'xpack.banners.textContent: "Data Mesh - Cluster%s"\n' "$instance" >> $kibanaYmlFile

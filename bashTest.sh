@@ -4,6 +4,11 @@ baseDir="/mnt/data/mesh"
 elasticPassword=""
 credsFile="$baseDir/credentials.txt"
 
+if [ "$2" == "reset" ] || [ "$3" == "reset" ]; then
+	echo "Removing all existing data for reset..."
+fi
+exit 0
+
 if [ -f $credsFile ]; then
    echo "File $credsFile exists..."
 else

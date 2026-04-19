@@ -1,10 +1,13 @@
 #!/bin/bash
 # Usage: ./elastic-mesh-create.sh x <reset> (where x is the number of clusters to create via Docker Compose, optionally pass reset to remove all existing clusters)
 
-readarray -t env < <(grep -v '^#' .env)
-export "${env[@]}"
-echo $ELASTIC_LICENSE_FILE
-exit 0
+#[ -f .env ] && set -a && source .env && set +a
+#echo $ELASTIC_LICENSE_FILE
+#licenseFile="$ELASTIC_LICENSE_FILE"
+#echo "$licenseFile"
+#licenseJson="$(cat $licenseFile)"
+#echo "$licenseJson"
+#exit 0
 
 if [[ $# -eq 0 ]] ; then
     echo './elastic-mesh-create.sh x <reset> (where x is the number of clusters to create via Docker Compose, optionally pass reset to remove all existing clusters)'
@@ -18,8 +21,8 @@ if [[ "$osType" == "Darwin" ]]; then
 	exit 0
 fi;
 
-# If wer'e passed a reset then remove all existing data:
-if [[ "$2" == "reset" ]]; then
+# If we're passed a reset then remove all existing data:
+if [ "$2" == "reset" ] || [ "$3" == "reset" ]; then
 	echo "Removing all existing data for reset..."
 	rm -Rf /mnt/data/mesh
 fi
@@ -33,10 +36,14 @@ fi;
 
 mkdir -p $baseDir
 
+# Set credentials variables:
 elasticPassword=""
 kibanaPassword=""
 enryptionKey=""
+# And location of known files:
 credsFile="$baseDir/credentials.txt"
+licenseFile="/opt/elastic/license.json"
+
 
 if [ -f $credsFile ]; then
 # Read in the key/value pairs from the cred file it it already exists (we don't want to overwrite the elastic password!)
@@ -224,7 +231,7 @@ remoteTemplate=$(cat <<EOF
           "proxy_socket_connections": null,
           "server_name": null,
           "seeds": [
-            "clusterxx-elastic:9300"
+            "clusterxx-elastic:9443"
           ],
           "node_connections": 3
         }
@@ -259,6 +266,125 @@ apiKeyTemplate=$(cat <<EOF
 EOF
 )
 
+sleep 30
+
+# Check if we have a license file and add it if we do
+if [ -f $licenseFile ]; then
+	echo "Adding license to each cluster"
+	for ((x=1; x<="$1"; x++)); do
+# First cast the loop counter to a string with leading zero if needed:
+		declare instance=""
+		printf -v instance "%02d" $x;
+
+		curl -s -k -H "Content-Type: application/json" -X PUT -d @$licenseFile -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_license"
+	done;
+fi
+
+if [ "$2" == "pole" ] || [ "$3" == "pole" ]; then
+# Add pole-data to the template to create API key:
+apiKeyTemplate=$(cat <<EOF
+{
+  "name": "clusterxx-ccs-api-key",
+  "expiration": "365d",
+  "access": {
+    "search": [
+      {
+        "names": ["mesh*", "pole-data*"]
+      }
+    ]
+  },
+  "metadata": {
+    "description": "elastic-data-mesh-poc",
+    "environment": {
+      "level": 1,
+      "trusted": true,
+      "tags": ["dev", "poc", "pole-data"]
+    }
+  }
+}
+EOF
+)
+
+# And add the POLE templates to each cluster:
+	echo "Adding POLE templates to each cluster"
+
+# Make sure we've done a git pull from the elastic-pole-data repo locally to /opt/elastic-pole-data
+	polePersonTemplate="/opt/elastic-pole-data/pole_person_component_template.json"
+	poleObjectTemplate="/opt/elastic-pole-data/pole_object_component_template.json"
+	poleLocationTemplate="/opt/elastic-pole-data/pole_location_component_template.json"
+	poleEventTemplate="/opt/elastic-pole-data/pole_event_component_template.json"
+	poleDataTemplate="/opt/elastic-pole-data/pole_data_index_template.json"
+	poleIngestPipeline="/opt/elastic-pole-data/pole_data_default_pipeline.json"
+
+	for ((x=1; x<="$1"; x++)); do
+# First cast the loop counter to a string with leading zero if needed:
+		declare instance=""
+		printf -v instance "%02d" $x;
+
+		echo "Creating templates in mesh cluster $instance"
+
+		curl -s -k -H "Content-Type: application/json" -X PUT -d @$polePersonTemplate -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_component_template/pole_person_component_template"
+
+		curl -s -k -H "Content-Type: application/json" -X PUT -d @$poleObjectTemplate -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_component_template/pole_object_component_template"
+
+		curl -s -k -H "Content-Type: application/json" -X PUT -d @$poleLocationTemplate -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_component_template/pole_location_component_template"
+		
+		curl -s -k -H "Content-Type: application/json" -X PUT -d @$poleEventTemplate -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_component_template/pole_event_component_template"
+
+		curl -s -k -H "Content-Type: application/json" -X PUT -d @$poleDataTemplate -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_index_template/pole_data_index_template"
+
+# Create default ingest pipeline
+		curl -s -k -H "Content-Type: application/json" -X PUT -d @$poleIngestPipeline -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_ingest/pipeline/pole_data_default_pipeline"
+done;
+fi
+
+echo "Creating API keys"
+apiKeyFile=""
+for ((x=1; x<="$1"; x++)); do
+# First cast the loop counter to a string with leading zero if needed:
+	declare instance=""
+	printf -v instance "%02d" $x;
+
+	apiKeyFile="$baseDir/cluster$instance/cluster$instance-ccs-api-key.json"
+
+	declare apiKeyRequest="${apiKeyTemplate//"xx"/$instance}"
+	declare json=""
+	json=$(curl -s -k -H "Content-Type: application/json" -X POST -d "$apiKeyRequest" -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_security/cross_cluster/api_key")
+#	printf "$json" > $apiKeyFile
+# Pretty print our API key json to file:
+	echo $json | jq > $apiKeyFile
+done;
+
+echo "Adding API keys for remote clusters to keystore"
+for ((x=1; x<="$1"; x++)); do
+# First cast the loop counter to a string with leading zero if needed:
+	declare instance=""
+	printf -v instance "%02d" $x;
+
+# Then loop through and add the remote cluster API keys to the current one:
+	for ((y=1; y<="$1"; y++)); do
+# Skip the remote cluster if it's for the same cluster:
+		if [[ "$x" == "$y" ]]; then
+			continue
+		fi
+
+		printf -v remoteInstance "%02d" $y;
+#		declare apiKey=$(echo $json | jq -r '.encoded')
+		declare apiKeyFile="/mnt/data/mesh/cluster$remoteInstance/cluster$remoteInstance-ccs-api-key.json"
+		declare apiKey=$(cat $apiKeyFile | jq -r '.encoded')
+		docker exec -i "cluster$instance-elastic"  ./bin/elasticsearch-keystore add cluster.remote.cluster$remoteInstance-elastic.credentials <<< "$apiKey"
+	done;
+#	curl -k -H "Content-Type: application/json" -X POST -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_nodes/reload_secure_settings"
+done;
+
+echo "Reload secure settings to pick up API keys from keystore"
+for ((x=1; x<="$1"; x++)); do
+# First cast the loop counter to a string with leading zero if needed:
+	declare instance=""
+	printf -v instance "%02d" $x;
+	curl -k -H "Content-Type: application/json" -X POST -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_nodes/reload_secure_settings"
+done;
+
 echo "Adding remote clusters"
 for ((x=1; x<="$1"; x++)); do
 # First cast the loop counter to a string with leading zero if needed:
@@ -276,22 +402,4 @@ for ((x=1; x<="$1"; x++)); do
 		declare remoteSettings="${remoteTemplate//"xx"/$remoteInstance}"
 		curl -k -H "Content-Type: application/json" -X PUT -d "$remoteSettings" -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_cluster/settings"
 	done;
-done;
-
-echo "Creating API keys"
-apiKeyFile=""
-for ((x=1; x<="$1"; x++)); do
-# First cast the loop counter to a string with leading zero if needed:
-	declare instance=""
-	printf -v instance "%02d" $x;
-
-	apiKeyFile="$baseDir/cluster$instance/cluster$instance-ccs-api-key.json"
-
-	declare apiKeyRequest="${apiKeyTemplate//"xx"/$instance}"
-	declare json=""
-	json=$(curl -s -k -H "Content-Type: application/json" -X POST -d "$apiKeyRequest" -u "elastic:$ELASTIC_PASSWORD" "https://cluster$instance-elastic:9200/_security/cross_cluster/api_key")
-
-#	printf "$json" > $apiKeyFile
-# Pretty print our API key json to file:
-	echo $json | jq > $apiKeyFile
 done;

@@ -64,6 +64,7 @@ services:
      - xpack.security.remote_cluster_server.ssl.key=certs/cluster${instance}-elastic/cluster${instance}-elastic.key
      - xpack.security.remote_cluster_server.ssl.certificate=certs/cluster${instance}-elastic/cluster${instance}-elastic.crt
      - xpack.security.remote_cluster_server.ssl.verification_mode=certificate
+     - xpack.security.remote_cluster_client.ssl.verification_mode=certificate
      - xpack.security.transport.ssl.enabled=true
      - xpack.security.transport.ssl.key=certs/cluster${instance}-elastic/cluster${instance}-elastic.key
      - xpack.security.transport.ssl.certificate=certs/cluster${instance}-elastic/cluster${instance}-elastic.crt
